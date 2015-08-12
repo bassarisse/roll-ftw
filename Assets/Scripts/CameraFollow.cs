@@ -47,6 +47,12 @@ public class CameraFollow : MonoBehaviour {
 		AddDistanceResult (distances, Vector2.down, 2.25f);
 
 		var hits = distances.Where (o => o.Value.distance >= 0.0f).OrderByDescending (o => o.Value.distance).Take(2).ToList();
+		
+		var hasOpposites = (hits.Any(o => o.Key == Vector2.left) && hits.Any(o => o.Key == Vector2.right)) ||
+			(hits.Any(o => o.Key == Vector2.up) && hits.Any(o => o.Key == Vector2.down));
+
+		if (hasOpposites)
+			hits = hits.Take (1).ToList ();
 
 		if (hits.Count > 1) {
 			
@@ -64,7 +70,7 @@ public class CameraFollow : MonoBehaviour {
 
 			distances.Clear();
 
-			AddDistanceResult (distances, newOrigin, newDir, 5.0f);
+				AddDistanceResult (distances, newOrigin, newDir, 5.0f);
 
 		}
 		
