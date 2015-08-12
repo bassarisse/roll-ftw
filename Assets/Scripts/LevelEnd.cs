@@ -3,6 +3,8 @@ using System.Collections;
 
 public class LevelEnd : MonoBehaviour {
 	
+	public string targetSceneName;
+	public float transitionTime = 0.8f;
 	public float pullForce = 1.0f;
 	public float stopRange = 0.5f;
 	public float stopVelocity = 0.5f;
@@ -10,17 +12,30 @@ public class LevelEnd : MonoBehaviour {
 
 	bool _activated = false;
 	Collider2D _collider;
+	
+	bool _startTransition = false;
+	float _transitionTimer = 0.0f;
 
 	// Use this for initialization
 	void Start () {
 		_activated = false;
 		_collider = null;
+		_startTransition = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 		AttractObject ();
+
+		if (_startTransition && _transitionTimer < transitionTime) {
+			_transitionTimer += Time.fixedDeltaTime;
+
+			if (_transitionTimer >= transitionTime && !string.IsNullOrEmpty(targetSceneName)) {
+				Application.LoadLevel(targetSceneName);
+			}
+
+		}
 	
 	}
 
@@ -33,6 +48,7 @@ public class LevelEnd : MonoBehaviour {
 		if (forceDir.magnitude <= stopRange && _collider.attachedRigidbody.velocity.magnitude <= stopVelocity) {
 
 			_collider.transform.position = new Vector3(transform.position.x, transform.position.y, _collider.transform.position.z);
+			_startTransition = true;
 
 		} else {
 
