@@ -56,6 +56,8 @@ public class LevelEnd : MonoBehaviour {
 		if (ballControl != null)
 			ballControl.enabled = false;
 
+		GameTimer.running = false;
+
 	}
 
 }

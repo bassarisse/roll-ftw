@@ -5,8 +5,8 @@ using System;
 
 public class GameTimer : MonoBehaviour {
 	
-	static bool running;
-	static float time;
+	public static bool running;
+	public static float time;
 
 	Text _text;
 
