@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 
 public class PaletteSwap : MonoBehaviour {
 	
@@ -20,16 +18,22 @@ public class PaletteSwap : MonoBehaviour {
 		_palettes = Resources.LoadAll<Texture2D>("ProcessedPalettes");
 
 		UpdatePalette ();
+
+		Messenger.AddListener<bool> ("EnablePalleteSwap", SetEnableSwap);
 	
 	}
 	
+	void SetEnableSwap(bool enable) {
+		this.EnableSwap = enabled;
+	}
+
 	// Update is called once per frame
 	void Update () {
 
 		if (!this.EnableSwap)
 			return;
 		
-		if (Input.GetKeyDown(KeyCode.RightArrow))
+		if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			PaletteSwap.paletteIndex++;
 			if (PaletteSwap.paletteIndex >= _palettes.Length)
@@ -37,7 +41,7 @@ public class PaletteSwap : MonoBehaviour {
 			UpdatePalette();
 		}
 		
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		if (Input.GetKeyDown(KeyCode.DownArrow))
 		{
 			PaletteSwap.paletteIndex--;
 			if (PaletteSwap.paletteIndex < 0)

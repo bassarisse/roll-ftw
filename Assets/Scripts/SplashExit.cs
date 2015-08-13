@@ -5,7 +5,7 @@ public class SplashExit : MonoBehaviour {
 
 	void EndSplash () {
 
-		Application.LoadLevel("Game1");
+		GameState.LoadLevel (1);
 	
 	}
 }

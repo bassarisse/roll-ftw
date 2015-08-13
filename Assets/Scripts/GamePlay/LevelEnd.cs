@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class LevelEnd : MonoBehaviour {
-	
-	public string targetSceneName;
+
 	public float transitionTime = 0.8f;
 	public float pullForce = 1.0f;
 	public float stopRange = 0.5f;
@@ -25,18 +25,25 @@ public class LevelEnd : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 		AttractObject ();
-
+		
 		if (_startTransition && _transitionTimer < transitionTime) {
 			_transitionTimer += Time.fixedDeltaTime;
-
-			if (_transitionTimer >= transitionTime && !string.IsNullOrEmpty(targetSceneName)) {
-				Application.LoadLevel(targetSceneName);
+			
+			if (_transitionTimer >= transitionTime) {
+				_transitionTimer = transitionTime;
+				
+				Messenger.Broadcast("LevelEnd");
+				Messenger.Broadcast<bool>("EnablePalleteSwap", true);
 			}
 
+			var channelValue = _transitionTimer / transitionTime;
+
+			Messenger.Broadcast<float>("ColorCurve.SetValue", channelValue);
+			Messenger.Broadcast<float>("ColorCurve.SetValue1", channelValue);
 		}
-	
+		
 	}
 
 	void AttractObject() {
@@ -48,11 +55,11 @@ public class LevelEnd : MonoBehaviour {
 		if (forceDir.magnitude <= stopRange && _collider.attachedRigidbody.velocity.magnitude <= stopVelocity) {
 
 			_collider.transform.position = new Vector3(transform.position.x, transform.position.y, _collider.transform.position.z);
-			_startTransition = true;
 
 		} else {
 
 			_collider.attachedRigidbody.AddForce (forceDir.normalized * pullForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
+			_startTransition = true;
 
 		}
 

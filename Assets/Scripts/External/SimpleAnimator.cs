@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -43,6 +44,7 @@ public class SimpleAnimator : MonoBehaviour {
 	//--------------------------------------------------------------------------------
 	#region Private Properties
 	SpriteRenderer spriteRenderer;
+	Image uiImage;
 	Anim current;
 	bool _playing;
 	bool _decreasing;
@@ -65,14 +67,17 @@ public class SimpleAnimator : MonoBehaviour {
 	void Start() {
 		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 		if (spriteRenderer == null) {
-			Debug.Log(gameObject.name + ": Couldn't find SpriteRenderer");
+			uiImage = GetComponentInChildren<Image> ();
+			if (uiImage == null) {
+				Debug.Log(gameObject.name + ": Couldn't find SpriteRenderer or Image");
+			}
 		}
-		
+
 		if (animations.Count > 0) PlayByIndex(0);
 	}
 	
 	void Update() {
-		if (!_playing || Time.time < nextFrameTime || spriteRenderer == null) return;
+		if (!_playing || Time.time < nextFrameTime) return;
 		if (_decreasing)
 			currentFrame--;
 		else
@@ -102,8 +107,15 @@ public class SimpleAnimator : MonoBehaviour {
 				return;
 			}
 		}
-		spriteRenderer.sprite = current.frames[currentFrame];
+		UpdateFrame ();
 		nextFrameTime += secsPerFrame;
+	}
+
+	void UpdateFrame () {
+		if (spriteRenderer != null)
+			spriteRenderer.sprite = current.frames[currentFrame];
+		if (uiImage != null)
+			uiImage.sprite = current.frames[currentFrame];
 	}
 	
 	#endregion
