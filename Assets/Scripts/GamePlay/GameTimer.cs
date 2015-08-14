@@ -10,14 +10,15 @@ public class GameTimer : MonoBehaviour {
 	public static float time;
 
 	Text _text;
-	float _startTime;
+	float _startTimer;
+	float _startDelayTime = 0.5f;
 
 	// Use this for initialization
 	void Start () {
 
 		_text = GetComponent<Text> ();
 		_text.enabled = false;
-		_startTime = 0f;
+		_startTimer = 0f;
 
 	}
 
@@ -31,8 +32,10 @@ public class GameTimer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (_startTime < 0.5f) {
-			_startTime += Time.deltaTime;
+		if (_startTimer < _startDelayTime) {
+			_startTimer += Time.deltaTime;
+			if (_startTimer >= _startDelayTime)
+				Messenger.Broadcast("LevelStart");
 			return;
 		}
 		

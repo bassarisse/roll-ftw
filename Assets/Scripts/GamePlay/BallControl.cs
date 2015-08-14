@@ -15,7 +15,15 @@ public class BallControl : MonoBehaviour {
 
 		_body = GetComponent<Rigidbody2D> ();
 		_jumping = false;
+
+		Messenger.AddListener ("LevelStart", ActivateControl);
+
+		this.enabled = false;
 	
+	}
+	
+	void ActivateControl() {
+		this.enabled = true;
 	}
 	
 	// Update is called once per frame
