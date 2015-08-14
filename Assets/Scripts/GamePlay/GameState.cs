@@ -16,7 +16,7 @@ public static class GameState {
 		}
 	}
 	
-	public const int MaxLevel = 2;
+	public const int MaxLevel = 1;
 	public static int CurrentLevel = 1;
 	
 	public static void Reset () {
@@ -44,7 +44,7 @@ public static class GameState {
 
 		if (CurrentLevel > MaxLevel) {
 			Reset();
-			Application.LoadLevel ("SplashScreen");
+			Application.LoadLevel ("GameOver");
 			return;
 		}
 
