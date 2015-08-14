@@ -2,9 +2,19 @@
 using System.Collections;
 
 public class PaletteSwap : MonoBehaviour {
-	
-	public static int paletteIndex = 0;
 
+	const string PALETTE_INDEX_KEY = "paletteIndex";
+	
+	public static int PaletteIndex {
+		get {
+			return PlayerPrefs.GetInt(PALETTE_INDEX_KEY, 0);
+		}
+		set {
+			PlayerPrefs.SetInt(PALETTE_INDEX_KEY, value);
+			PlayerPrefs.Save();
+		}
+	}
+	
 	public bool EnableSwap = false;
 
 	Resolutioner _resolutioner;
@@ -35,24 +45,24 @@ public class PaletteSwap : MonoBehaviour {
 		
 		if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
-			PaletteSwap.paletteIndex++;
-			if (PaletteSwap.paletteIndex >= _palettes.Length)
-				PaletteSwap.paletteIndex = 0;
+			PaletteSwap.PaletteIndex++;
+			if (PaletteSwap.PaletteIndex >= _palettes.Length)
+				PaletteSwap.PaletteIndex = 0;
 			UpdatePalette();
 		}
 		
 		if (Input.GetKeyDown(KeyCode.DownArrow))
 		{
-			PaletteSwap.paletteIndex--;
-			if (PaletteSwap.paletteIndex < 0)
-				PaletteSwap.paletteIndex = _palettes.Length - 1;
+			PaletteSwap.PaletteIndex--;
+			if (PaletteSwap.PaletteIndex < 0)
+				PaletteSwap.PaletteIndex = _palettes.Length - 1;
 			UpdatePalette();
 		}
 	
 	}
 
 	private void UpdatePalette() {
-		_resolutioner.postprocessColor.SetPalette(_palettes [PaletteSwap.paletteIndex]);
+		_resolutioner.postprocessColor.SetPalette(_palettes [PaletteSwap.PaletteIndex]);
 	}
 
 }
