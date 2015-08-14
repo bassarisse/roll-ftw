@@ -8,15 +8,21 @@ public static class GameState {
 	
 	public static int MaxReachedLevel {
 		get {
-			return PlayerPrefs.GetInt(MAX_REACHED_LEVEL_KEY, 1);
+			var maxReachedLevel = PlayerPrefs.GetInt(MAX_REACHED_LEVEL_KEY, 1);
+			if (maxReachedLevel > MaxLevel)
+				maxReachedLevel = MaxLevel;
+			return maxReachedLevel;
 		}
 		set {
-			PlayerPrefs.SetInt(MAX_REACHED_LEVEL_KEY, value);
+			var maxReachedLevel = value;
+			if (maxReachedLevel > MaxLevel)
+				maxReachedLevel = MaxLevel;
+			PlayerPrefs.SetInt(MAX_REACHED_LEVEL_KEY, maxReachedLevel);
 			PlayerPrefs.Save();
 		}
 	}
 	
-	public const int MaxLevel = 1;
+	public const int MaxLevel = 2;
 	public static int CurrentLevel = 1;
 	
 	public static void Reset () {

@@ -43,7 +43,7 @@ public class BallControl : MonoBehaviour {
 			_body.AddForce(new Vector2(Speed, 0));
 		}
 		
-		if (!_jumping && Input.GetKeyDown (KeyCode.Space)) {
+		if (!_jumping && (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.UpArrow))) {
 			var hit = Physics2D.CircleCast(transform.position, 0.5f, Vector2.down, 0.5f, JumpLayerMask);
 			if (hit.collider != null) {
 				_jumping = true;

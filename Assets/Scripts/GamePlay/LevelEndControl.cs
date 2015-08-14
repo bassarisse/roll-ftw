@@ -4,39 +4,59 @@ using System.Collections.Generic;
 
 public class LevelEndControl : MonoBehaviour {
 	
-	public bool EnableControl = false;
-	
-	// Use this for initialization
-	void Start () {
-		
-		Messenger.AddListener ("LevelEnd", SetEnableControl);
-		
-	}
-	
-	void SetEnableControl() {
-		this.EnableControl = true;
-	}
+	public Fader fader;
 	
 	// Update is called once per frame
 	void Update () {
 		
-		if (!this.EnableControl)
+		if (Input.GetKeyDown(KeyCode.UpArrow))
+		{
+			if (fader == null) {
+				ReturnToTitleScreen();
+			} else {
+				fader.SetColor(new Color(0, 0, 0, 0));
+				fader.Play(true, gameObject, "ReturnToTitleScreen");
+			}
+			this.enabled = false;
 			return;
+		}
 		
 		if (Input.GetKeyDown(KeyCode.LeftArrow))
 		{
-			GameState.LoadLevel();
-			this.EnableControl = false;
+			if (fader == null) {
+				RepeatLevel();
+			} else {
+				fader.SetColor(new Color(1, 1, 1, 0));
+				fader.Play(true, gameObject, "RepeatLevel");
+			}
+			this.enabled = false;
 			return;
 		}
 		
-		if (Input.GetKeyDown(KeyCode.RightArrow))
+		if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Return))
 		{
-			GameState.LoadNextLevel();
-			this.EnableControl = false;
+			if (fader == null) {
+				NextLevel();
+			} else {
+				fader.SetColor(new Color(1, 1, 1, 0));
+				fader.Play(true, gameObject, "NextLevel");
+			}
+			this.enabled = false;
 			return;
 		}
 		
+	}
+	
+	void NextLevel() {
+		GameState.LoadNextLevel();
+	}
+	
+	void RepeatLevel() {
+		GameState.LoadLevel();
+	}
+	
+	void ReturnToTitleScreen() {
+		Application.LoadLevel("TitleScreen");
 	}
 	
 }

@@ -16,6 +16,8 @@ public class PaletteSwap : MonoBehaviour {
 	}
 	
 	public bool EnableSwap = false;
+	public bool EnableUp = false;
+	public bool EnableDown = true;
 
 	Resolutioner _resolutioner;
 	Texture2D[] _palettes;
@@ -43,7 +45,7 @@ public class PaletteSwap : MonoBehaviour {
 		if (!this.EnableSwap)
 			return;
 		
-		if (Input.GetKeyDown(KeyCode.UpArrow))
+		if (EnableUp && Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			PaletteSwap.PaletteIndex++;
 			if (PaletteSwap.PaletteIndex >= _palettes.Length)
@@ -51,7 +53,7 @@ public class PaletteSwap : MonoBehaviour {
 			UpdatePalette();
 		}
 		
-		if (Input.GetKeyDown(KeyCode.DownArrow))
+		if (EnableDown && Input.GetKeyDown(KeyCode.DownArrow))
 		{
 			PaletteSwap.PaletteIndex--;
 			if (PaletteSwap.PaletteIndex < 0)

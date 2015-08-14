@@ -12,6 +12,10 @@ public class CameraFollowMe : MonoBehaviour {
 			return;
 
 		var cameraFollow = camera.GetComponent<CameraFollow> ();
+		
+		if (cameraFollow == null)
+			return;
+
 		cameraFollow.target = this.gameObject;
 	
 	}
