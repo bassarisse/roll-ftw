@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Fader : MonoBehaviour {
 	
 	public bool AutoPlay = true;
+	public Color StartColor = Color.white;
 	public float AlphaFrom = 1f;
 	public float AlphaTo = 0f;
 	public float Time = 1f;
@@ -17,6 +18,8 @@ public class Fader : MonoBehaviour {
 		
 		_image = GetComponent<Image> ();
 		_spriteRenderer = GetComponent<SpriteRenderer> ();
+
+		SetColor (StartColor);
 
 		if (AutoPlay)
 			Play (false);
@@ -45,7 +48,7 @@ public class Fader : MonoBehaviour {
 
 	}
 
-	void ChangeAlpha (float value) {
+	public void ChangeAlpha (float value) {
 		
 		if (_image != null)
 			_image.color = CreateColorWithAlpha(_image.color, value);

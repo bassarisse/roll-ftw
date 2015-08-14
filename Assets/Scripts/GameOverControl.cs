@@ -18,7 +18,7 @@ public class GameOverControl : MonoBehaviour {
 			if (fader == null) {
 				Exit();
 			} else {
-				fader.SetColor(Color.black);
+				fader.SetColor(new Color(0, 0, 0, 0));
 				fader.Play(true, gameObject, "Exit");
 			}
 		}
