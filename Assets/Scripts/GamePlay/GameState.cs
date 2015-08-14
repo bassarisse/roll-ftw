@@ -73,6 +73,9 @@ public static class GameState {
 	}
 	
 	public static bool IsRecord(int level, float time) {
+		
+		if (time <= 0f)
+			return false;
 
 		var isRecord = false;
 		var levelTime = PlayerPrefs.GetFloat (GetLevelScoreKey (level), -1f);
