@@ -28,6 +28,7 @@ public class CameraFollow : MonoBehaviour {
 	}
 	
 	void UpdatePosition() {
+
 		if (target == null)
 			return;
 		

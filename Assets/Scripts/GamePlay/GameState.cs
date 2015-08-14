@@ -51,7 +51,8 @@ public static class GameState {
 		if (CurrentLevel > MaxReachedLevel)
 			MaxReachedLevel = CurrentLevel;
 		
-		Application.LoadLevel ("Game" + CurrentLevel.ToString ());
+		Application.LoadLevel ("Level" + CurrentLevel.ToString ());
+		Application.LoadLevelAdditive("Game");
 		
 	}
 	
