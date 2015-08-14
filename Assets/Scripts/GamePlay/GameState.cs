@@ -59,16 +59,33 @@ public static class GameState {
 		return LEVEL_SCORE_KEY + level.ToString();
 	}
 	
+	public static void SaveLevelTime(float time) {
+		SaveLevelTime (CurrentLevel, time);
+	}
+	
 	public static void SaveLevelTime(int level, float time) {
 		PlayerPrefs.SetFloat (GetLevelScoreKey (level), time);
 		PlayerPrefs.Save ();
 	}
 	
+	public static bool IsRecord(float time) {
+		return IsRecord (CurrentLevel, time);
+	}
+	
 	public static bool IsRecord(int level, float time) {
+
+		var isRecord = false;
 		var levelTime = PlayerPrefs.GetFloat (GetLevelScoreKey (level), -1f);
+
 		if (levelTime < 0f)
-			return false;
-		return time < levelTime;
+			isRecord = true;
+		else
+			isRecord = time < levelTime;
+
+		if (isRecord)
+			SaveLevelTime (level, time);
+
+		return isRecord;
 	}
 
 }
