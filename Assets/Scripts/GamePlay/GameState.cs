@@ -3,6 +3,19 @@ using System.Collections;
 
 public static class GameState {
 	
+	const string MAX_REACHED_LEVEL_KEY = "maxReachedLevel";
+	const string LEVEL_SCORE_KEY = "levelScore";
+	
+	public static int MaxReachedLevel {
+		get {
+			return PlayerPrefs.GetInt(MAX_REACHED_LEVEL_KEY, 1);
+		}
+		set {
+			PlayerPrefs.SetInt(MAX_REACHED_LEVEL_KEY, value);
+			PlayerPrefs.Save();
+		}
+	}
+	
 	public const int MaxLevel = 2;
 	public static int CurrentLevel = 1;
 	
@@ -35,8 +48,27 @@ public static class GameState {
 			return;
 		}
 
+		if (CurrentLevel > MaxReachedLevel)
+			MaxReachedLevel = CurrentLevel;
+		
 		Application.LoadLevel ("Game" + CurrentLevel.ToString ());
-
+		
+	}
+	
+	private static string GetLevelScoreKey(int level) {
+		return LEVEL_SCORE_KEY + level.ToString();
+	}
+	
+	public static void SaveLevelTime(int level, float time) {
+		PlayerPrefs.SetFloat (GetLevelScoreKey (level), time);
+		PlayerPrefs.Save ();
+	}
+	
+	public static bool IsRecord(int level, float time) {
+		var levelTime = PlayerPrefs.GetFloat (GetLevelScoreKey (level), -1f);
+		if (levelTime < 0f)
+			return false;
+		return time < levelTime;
 	}
 
 }
