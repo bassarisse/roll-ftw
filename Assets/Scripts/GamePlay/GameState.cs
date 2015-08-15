@@ -4,7 +4,7 @@ using System.Collections;
 public static class GameState {
 	
 	const string MAX_REACHED_LEVEL_KEY = "maxReachedLevel";
-	const string LEVEL_SCORE_KEY = "levelScore";
+	const string LEVEL_TIME_KEY = "levelTime";
 	
 	public static int MaxReachedLevel {
 		get {
@@ -74,8 +74,22 @@ public static class GameState {
 		
 	}
 	
-	private static string GetLevelScoreKey(int level) {
-		return LEVEL_SCORE_KEY + level.ToString();
+	private static string GetLevelTimeKey(int level) {
+		return LEVEL_TIME_KEY + level.ToString();
+	}
+	
+	public static float GetLevelTime(int level) {
+		return PlayerPrefs.GetFloat (GetLevelTimeKey (level), -1f);
+	}
+	
+	public static float GetAllLevelsTime() {
+		var totalTime = 0f;
+		for (var level = 1; level <= MaxLevel; level++) {
+			var time = GetLevelTime(level);
+			if (time > 0f)
+				totalTime += time;
+		}
+		return totalTime;
 	}
 	
 	public static void SaveLevelTime(float time) {
@@ -83,7 +97,7 @@ public static class GameState {
 	}
 	
 	public static void SaveLevelTime(int level, float time) {
-		PlayerPrefs.SetFloat (GetLevelScoreKey (level), time);
+		PlayerPrefs.SetFloat (GetLevelTimeKey (level), time);
 		PlayerPrefs.Save ();
 	}
 	
@@ -97,7 +111,7 @@ public static class GameState {
 			return false;
 
 		var isRecord = false;
-		var levelTime = PlayerPrefs.GetFloat (GetLevelScoreKey (level), -1f);
+		var levelTime = GetLevelTime(level);
 
 		if (levelTime < 0f)
 			isRecord = true;
