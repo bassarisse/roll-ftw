@@ -22,7 +22,7 @@ public static class GameState {
 		}
 	}
 	
-	public const int MaxLevel = 2;
+	public const int MaxLevel = 4;
 	public static int CurrentLevel = 1;
 	public static bool IsNewRecord = false;
 	

@@ -36,7 +36,7 @@ public class Polygon : MonoBehaviour {
 	
 	public int selectedIndex = 0;
 
-	private PolygonCollider2D _polygonCollider;
+	public PolygonCollider2D _polygonCollider = null;
 
 	[SerializeField]
 	public TextAsset PlistPath = null;
@@ -45,6 +45,7 @@ public class Polygon : MonoBehaviour {
 
 	
 	void Awake() {
+
 		if(PlistPath != null && _totalPolygonsinFile.Length <= 0) {
 			this.ParsePolygonsFromFile();
 		}
@@ -53,7 +54,8 @@ public class Polygon : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		_polygonCollider = this.GetComponent<PolygonCollider2D>();
+		if (_polygonCollider == null)
+			_polygonCollider = this.GetComponent<PolygonCollider2D>();
 
 		//this.ClearBodiesList();
 
@@ -151,9 +153,12 @@ public class Polygon : MonoBehaviour {
 	public void setPolygonOfIndex(int index) {
 		_polygonObject = _totalPolygonsinFile[index];
 
+		if (_polygonCollider == null)
+			return;
+
 		_polygonCollider.pathCount = _polygonObject.TotalPaths;
 
-		for(int i = 0; i<_polygonCollider.pathCount; i++) {
+		for(int i = 0; i < _polygonCollider.pathCount; i++) {
 
 			Vector2[] tempPoints = new Vector2[_polygonObject.paths[i].points.Length];
 			for(int j = 0; j<_polygonObject.paths[i].points.Length; j++) {
