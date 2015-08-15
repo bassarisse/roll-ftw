@@ -22,8 +22,9 @@ public class LevelEnd : MonoBehaviour {
 		_activated = false;
 		_collider = null;
 		_startTransition = false;
-
-		AudioHandler.Load("level_end");
+		
+		AudioHandler.Load ("level_end");
+		AudioHandler.Load ("win1");
 
 	}
 	
@@ -38,6 +39,7 @@ public class LevelEnd : MonoBehaviour {
 			if (_transitionTimer >= transitionTime) {
 				_transitionTimer = transitionTime;
 				
+				AudioHandler.Play("win1", 0.65f);
 				Messenger.Broadcast("LevelEnd");
 				Messenger.Broadcast<bool>("EnablePalleteSwap", true);
 			}
