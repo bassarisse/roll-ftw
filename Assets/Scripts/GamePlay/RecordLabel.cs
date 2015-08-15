@@ -17,7 +17,7 @@ public class RecordLabel : MonoBehaviour {
 	
 	void Show() {
 		
-		if (GameState.IsRecord(GameTimer.time) && Text != null)
+		if (GameState.IsNewRecord && Text != null)
 			Text.enabled = true;
 		
 	}

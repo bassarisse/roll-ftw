@@ -24,9 +24,19 @@ public static class GameState {
 	
 	public const int MaxLevel = 2;
 	public static int CurrentLevel = 1;
+	public static bool IsNewRecord = false;
 	
 	public static void Reset () {
 		CurrentLevel = 1;
+		IsNewRecord = false;
+	}
+	
+	public static void FinishedLevel(float time) {
+		var nextLevel = CurrentLevel + 1;
+		if (nextLevel <= MaxLevel) {
+			MaxReachedLevel = nextLevel;
+		}
+		IsNewRecord = IsRecord (CurrentLevel, time);
 	}
 	
 	public static void LoadNextLevel() {
@@ -57,6 +67,8 @@ public static class GameState {
 		if (CurrentLevel > MaxReachedLevel)
 			MaxReachedLevel = CurrentLevel;
 		
+		IsNewRecord = false;
+
 		Application.LoadLevel ("Level" + CurrentLevel.ToString ());
 		Application.LoadLevelAdditive("Game");
 		
