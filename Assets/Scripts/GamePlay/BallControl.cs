@@ -12,10 +12,14 @@ public class BallControl : MonoBehaviour {
 	Rigidbody2D _body;
 	AudioSource _audio;
 	bool _jumping;
+	bool _shouldHitSound;
 	bool _firstHit;
 
 	// Use this for initialization
 	void Start () {
+
+		if (Application.isEditor)
+			Application.LoadLevelAdditive("Game");
 		
 		AudioHandler.Load ("jump");
 		AudioHandler.Load ("hit1");
@@ -58,6 +62,9 @@ public class BallControl : MonoBehaviour {
 		var hit = Physics2D.CircleCast(transform.position, 0.5f, Vector2.down, 0.5f, JumpLayerMask);
 		var isHittingGround = hit.collider != null;
 
+		if (!isHittingGround)
+			_shouldHitSound = true;
+
 		if (!_jumping && (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.UpArrow))) {
 			if (isHittingGround) {
 				AudioHandler.Play("jump");
@@ -85,7 +92,10 @@ public class BallControl : MonoBehaviour {
 			_firstHit = false;
 			return;
 		}
-		AudioHandler.Play("hit" + Random.Range(1, 3).ToString(), 0.3f);
+		if (!_shouldHitSound)
+			return;
+		_shouldHitSound = false;
+		AudioHandler.Play("hit" + Random.Range(1, 3).ToString(), 0.5f);
 	}
 
 }
