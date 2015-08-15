@@ -7,6 +7,8 @@ public class GameOverControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
+		AudioHandler.Load ("selection");
 
 	}
 	
@@ -21,6 +23,8 @@ public class GameOverControl : MonoBehaviour {
 				fader.Play(true, gameObject, "Exit");
 			}
 			this.enabled = false;
+			AudioHandler.Play("selection");
+			return;
 		}
 
 	}

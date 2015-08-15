@@ -5,6 +5,12 @@ using System.Collections.Generic;
 public class LevelEndControl : MonoBehaviour {
 	
 	public Fader fader;
+
+	void Start() {
+		
+		AudioHandler.Load ("selection");
+
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -17,6 +23,7 @@ public class LevelEndControl : MonoBehaviour {
 				fader.SetColor(new Color(0, 0, 0, 0));
 				fader.Play(true, gameObject, "ReturnToTitleScreen");
 			}
+			AudioHandler.Play("selection");
 			this.enabled = false;
 			return;
 		}
@@ -29,6 +36,7 @@ public class LevelEndControl : MonoBehaviour {
 				fader.SetColor(new Color(1, 1, 1, 0));
 				fader.Play(true, gameObject, "RepeatLevel");
 			}
+			AudioHandler.Play("selection");
 			this.enabled = false;
 			return;
 		}
@@ -41,6 +49,7 @@ public class LevelEndControl : MonoBehaviour {
 				fader.SetColor(new Color(1, 1, 1, 0));
 				fader.Play(true, gameObject, "NextLevel");
 			}
+			AudioHandler.Play("selection");
 			this.enabled = false;
 			return;
 		}

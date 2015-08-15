@@ -7,6 +7,9 @@ public class LevelSelectControl : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		
+		AudioHandler.Load ("selection");
+		AudioHandler.Load ("cursor");
 
 		GameState.CurrentLevel = GameState.MaxReachedLevel;
 		
@@ -19,12 +22,16 @@ public class LevelSelectControl : MonoBehaviour {
 			GameState.CurrentLevel++;
 			if (GameState.CurrentLevel > GameState.MaxReachedLevel)
 				GameState.CurrentLevel = GameState.MaxReachedLevel;
+			else
+				AudioHandler.Play("cursor");
 		}
 		
 		if (Input.GetKey (KeyCode.DownArrow)) {
 			GameState.CurrentLevel--;
 			if (GameState.CurrentLevel < 1)
 				GameState.CurrentLevel = 1;
+			else
+				AudioHandler.Play("cursor");
 		}
 		
 		if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Return)) {
@@ -34,6 +41,7 @@ public class LevelSelectControl : MonoBehaviour {
 				fader.SetColor(new Color(1, 1, 1, 0));
 				fader.Play(true, gameObject, "StartGame");
 			}
+			AudioHandler.Play("selection");
 			this.enabled = false;
 			return;
 		}
@@ -45,6 +53,7 @@ public class LevelSelectControl : MonoBehaviour {
 				fader.SetColor(new Color(0, 0, 0, 0));
 				fader.Play(true, gameObject, "ReturnToTitleScreen");
 			}
+			AudioHandler.Play("selection");
 			this.enabled = false;
 			return;
 		}

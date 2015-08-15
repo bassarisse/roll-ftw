@@ -8,6 +8,8 @@ public class TitleScreenControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		AudioHandler.Load ("selection");
+
 	}
 	
 	// Update is called once per frame
@@ -20,6 +22,7 @@ public class TitleScreenControl : MonoBehaviour {
 				fader.SetColor(new Color(0, 0, 0, 0));
 				fader.Play(true, gameObject, "LevelSelect");
 			}
+			AudioHandler.Play("selection");
 			this.enabled = false;
 			return;
 		}
@@ -31,6 +34,7 @@ public class TitleScreenControl : MonoBehaviour {
 				fader.SetColor(new Color(1, 1, 1, 0));
 				fader.Play(true, gameObject, "StartGame");
 			}
+			AudioHandler.Play("selection");
 			this.enabled = false;
 			return;
 		}

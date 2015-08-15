@@ -24,6 +24,8 @@ public class PaletteSwap : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
+		AudioHandler.Load("palette_change");
 
 		_resolutioner = GetComponent<Resolutioner> ();
 
@@ -50,6 +52,7 @@ public class PaletteSwap : MonoBehaviour {
 			PaletteSwap.PaletteIndex++;
 			if (PaletteSwap.PaletteIndex >= _palettes.Length)
 				PaletteSwap.PaletteIndex = 0;
+			AudioHandler.Play("palette_change");
 			UpdatePalette();
 		}
 		
@@ -58,6 +61,7 @@ public class PaletteSwap : MonoBehaviour {
 			PaletteSwap.PaletteIndex--;
 			if (PaletteSwap.PaletteIndex < 0)
 				PaletteSwap.PaletteIndex = _palettes.Length - 1;
+			AudioHandler.Play("palette_change");
 			UpdatePalette();
 		}
 	

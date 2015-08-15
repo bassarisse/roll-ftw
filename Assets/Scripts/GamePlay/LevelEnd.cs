@@ -18,9 +18,13 @@ public class LevelEnd : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		_activated = false;
 		_collider = null;
 		_startTransition = false;
+
+		AudioHandler.Load("level_end");
+
 	}
 	
 	// Update is called once per frame
@@ -41,7 +45,6 @@ public class LevelEnd : MonoBehaviour {
 			var channelValue = _transitionTimer / transitionTime;
 
 			Messenger.Broadcast<float>("ColorCurve.SetValue", channelValue);
-			Messenger.Broadcast<float>("ColorCurve.SetValue1", channelValue);
 		}
 		
 	}
@@ -76,10 +79,14 @@ public class LevelEnd : MonoBehaviour {
 		_collider.attachedRigidbody.AddTorque (torque, ForceMode2D.Impulse);
 
 		var ballControl = collider.GetComponent<BallControl> ();
-		if (ballControl != null)
+		if (ballControl != null) {
 			ballControl.enabled = false;
+			ballControl.StopAudio();
+		}
 
 		GameTimer.running = false;
+
+		AudioHandler.Play("level_end");
 
 	}
 
