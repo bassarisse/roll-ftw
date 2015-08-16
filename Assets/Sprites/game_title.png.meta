@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d767bddcd62644badab354625fd7af9c
-timeCreated: 1439441771
+guid: 6b5995f459836475dbd9d89c67a0af61
+timeCreated: 1439748417
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -49,7 +49,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites: []
-  spritePackingTag: arrows
+  spritePackingTag: logos
   userData: 
   assetBundleName: 
   assetBundleVariant: 

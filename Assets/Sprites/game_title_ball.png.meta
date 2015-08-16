@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d767bddcd62644badab354625fd7af9c
-timeCreated: 1439441771
+guid: 9ffaf3d5534434b8aa1ae5265716c027
+timeCreated: 1439748417
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -29,7 +29,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: 1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -49,7 +49,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites: []
-  spritePackingTag: arrows
+  spritePackingTag: characters
   userData: 
   assetBundleName: 
   assetBundleVariant: 

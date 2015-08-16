@@ -14,11 +14,18 @@ public class PauseControl : MonoBehaviour {
 		_paused = false;
 		//_storedTimeScale = Time.timeScale;
 
-		Messenger.AddListener ("LevelEnding", Disable);
+		this.enabled = false;
+		
+		Messenger.AddListener ("LevelStart", Activate);
+		Messenger.AddListener ("LevelEnding", Deactivate);
 
 	}
-
-	void Disable() {
+	
+	void Activate() {
+		this.enabled = true;
+	}
+	
+	void Deactivate() {
 		this.enabled = false;
 	}
 	
