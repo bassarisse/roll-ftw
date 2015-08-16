@@ -18,7 +18,7 @@ public class LevelSelectControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (Input.GetKey (KeyCode.UpArrow)) {
+		if (Input.GetKeyDown (KeyCode.UpArrow)) {
 			GameState.CurrentLevel++;
 			if (GameState.CurrentLevel > GameState.MaxReachedLevel)
 				GameState.CurrentLevel = GameState.MaxReachedLevel;
@@ -26,7 +26,7 @@ public class LevelSelectControl : MonoBehaviour {
 				AudioHandler.Play("cursor");
 		}
 		
-		if (Input.GetKey (KeyCode.DownArrow)) {
+		if (Input.GetKeyDown (KeyCode.DownArrow)) {
 			GameState.CurrentLevel--;
 			if (GameState.CurrentLevel < 1)
 				GameState.CurrentLevel = 1;
@@ -34,7 +34,9 @@ public class LevelSelectControl : MonoBehaviour {
 				AudioHandler.Play("cursor");
 		}
 		
-		if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Return)) {
+		if (Input.GetKeyDown (KeyCode.LeftArrow) ||
+		    Input.GetKeyDown (KeyCode.Space) ||
+		    Input.GetKeyDown (KeyCode.Return)) {
 			if (fader == null) {
 				StartGame();
 			} else {
@@ -46,7 +48,8 @@ public class LevelSelectControl : MonoBehaviour {
 			return;
 		}
 		
-		if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.Escape)) {
+		if (Input.GetKeyDown (KeyCode.RightArrow) ||
+		    Input.GetKeyDown (KeyCode.Escape)) {
 			if (fader == null) {
 				ReturnToTitleScreen();
 			} else {

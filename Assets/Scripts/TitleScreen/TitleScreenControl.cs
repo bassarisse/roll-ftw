@@ -15,7 +15,7 @@ public class TitleScreenControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (GameState.MaxReachedLevel > 1 && Input.GetKey (KeyCode.LeftArrow)) {
+		if (GameState.MaxReachedLevel > 1 && Input.GetKeyDown (KeyCode.LeftArrow)) {
 			if (fader == null) {
 				LevelSelect();
 			} else {
@@ -27,7 +27,9 @@ public class TitleScreenControl : MonoBehaviour {
 			return;
 		}
 		
-		if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Return)) {
+		if (Input.GetKeyDown (KeyCode.RightArrow) ||
+		    Input.GetKeyDown (KeyCode.Space) ||
+		    Input.GetKeyDown (KeyCode.Return)) {
 			if (fader == null) {
 				StartGame();
 			} else {

@@ -25,7 +25,11 @@ public class GameOverControl : MonoBehaviour {
 			AudioHandler.Play("win2", 0.65f);
 		}
 		
-		if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Return)) {
+		if (Input.GetKeyDown (KeyCode.RightArrow) ||
+		    Input.GetKeyDown (KeyCode.UpArrow) ||
+		    Input.GetKeyDown (KeyCode.Space) ||
+		    Input.GetKeyDown (KeyCode.Escape) ||
+		    Input.GetKeyDown (KeyCode.Return)) {
 			if (fader == null) {
 				Exit();
 			} else {

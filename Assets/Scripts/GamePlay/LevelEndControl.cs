@@ -41,7 +41,9 @@ public class LevelEndControl : MonoBehaviour {
 			return;
 		}
 		
-		if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Return))
+		if (Input.GetKeyDown (KeyCode.RightArrow) ||
+		    Input.GetKeyDown (KeyCode.Space) ||
+		    Input.GetKeyDown (KeyCode.Return))
 		{
 			if (fader == null) {
 				NextLevel();
