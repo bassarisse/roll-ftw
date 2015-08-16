@@ -31,10 +31,10 @@ public class LevelEndControl : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.LeftArrow))
 		{
 			if (fader == null) {
-				RepeatLevel();
+				RestartLevel();
 			} else {
 				fader.SetColor(new Color(1, 1, 1, 0));
-				fader.Play(true, gameObject, "RepeatLevel");
+				fader.Play(true, gameObject, "RestartLevel");
 			}
 			AudioHandler.Play("selection");
 			this.enabled = false;
@@ -62,7 +62,7 @@ public class LevelEndControl : MonoBehaviour {
 		GameState.LoadNextLevel();
 	}
 	
-	void RepeatLevel() {
+	void RestartLevel() {
 		GameState.LoadLevel();
 	}
 	

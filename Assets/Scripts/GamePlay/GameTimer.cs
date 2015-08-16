@@ -41,6 +41,17 @@ public class GameTimer : MonoBehaviour {
 		_text.enabled = false;
 		_startTimer = 0f;
 
+		Messenger.AddListener ("LevelPause", Deactivate);
+		Messenger.AddListener ("LevelResume", Activate);
+
+	}
+	
+	void Deactivate() {
+		this.enabled = false;
+	}
+	
+	void Activate() {
+		this.enabled = true;
 	}
 
 	void Awake() {

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class TextAutoShadow : MonoBehaviour {
 
+	public Color ShadowColor = Color.black;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -19,7 +21,7 @@ public class TextAutoShadow : MonoBehaviour {
 		
 		var shadow = gameObject.AddComponent<Shadow> ();
 		shadow.useGraphicAlpha = true;
-		shadow.effectColor = Color.black;
+		shadow.effectColor = ShadowColor;
 		shadow.effectDistance = new Vector2 (x, y);
 
 	}

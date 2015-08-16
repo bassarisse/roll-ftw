@@ -2,13 +2,17 @@
 using System.Collections;
 
 public class PauseControl : MonoBehaviour {
-
-	float _storedTimeScale;
+	
+	public Fader fader;
+	
+	bool _paused;
+	//float _storedTimeScale;
 
 	// Use this for initialization
 	void Start () {
 
-		_storedTimeScale = Time.timeScale;
+		_paused = false;
+		//_storedTimeScale = Time.timeScale;
 
 		Messenger.AddListener ("LevelEnding", Disable);
 
@@ -23,15 +27,55 @@ public class PauseControl : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.Return)) {
 
-			if (Time.timeScale > 0f) {
-				Time.timeScale = 0f;
+			_paused = !_paused;
+
+			if (_paused) {
+				//Time.timeScale = 0f;
 				Messenger.Broadcast("LevelPause");
 			} else {
-				Time.timeScale = _storedTimeScale;
+				//Time.timeScale = _storedTimeScale;
 				Messenger.Broadcast("LevelResume");
 			}
 
 		}
+
+		if (!_paused)
+			return;
+		
+		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		{
+			if (fader == null) {
+				RestartLevel();
+			} else {
+				fader.SetColor(new Color(1, 1, 1, 0));
+				fader.Play(true, gameObject, "RestartLevel");
+			}
+			AudioHandler.Play("selection");
+			this.enabled = false;
+			return;
+		}
+		
+		if (Input.GetKeyDown (KeyCode.DownArrow))
+		{
+			if (fader == null) {
+				ReturnToTitleScreen();
+			} else {
+				fader.SetColor(new Color(0, 0, 0, 0));
+				fader.Play(true, gameObject, "ReturnToTitleScreen");
+			}
+			AudioHandler.Play("selection");
+			this.enabled = false;
+			return;
+		}
 	
 	}
+	
+	void RestartLevel() {
+		GameState.LoadLevel();
+	}
+	
+	void ReturnToTitleScreen() {
+		Application.LoadLevel("TitleScreen");
+	}
+
 }
