@@ -88,6 +88,8 @@ public class LevelEnd : MonoBehaviour {
 
 		GameTimer.running = false;
 		GameState.FinishedLevel (GameTimer.time);
+		
+		Messenger.Broadcast("LevelEnding");
 
 		AudioHandler.Play("level_end");
 
