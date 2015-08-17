@@ -33,7 +33,7 @@ public static class GameState {
 	
 	public static void FinishedLevel(float time) {
 		var nextLevel = CurrentLevel + 1;
-		if (nextLevel <= MaxLevel) {
+		if (nextLevel <= MaxLevel && nextLevel > MaxReachedLevel) {
 			MaxReachedLevel = nextLevel;
 		}
 		IsNewRecord = IsRecord (CurrentLevel, time);
