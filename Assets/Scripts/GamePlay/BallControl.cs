@@ -11,6 +11,7 @@ public class BallControl : MonoBehaviour {
 	
 	Rigidbody2D _body;
 	AudioSource _audio;
+	float _jumpTimer;
 	bool _jumping;
 	bool _firstHit;
 	bool _isHittingGround;
@@ -34,6 +35,7 @@ public class BallControl : MonoBehaviour {
 		
 		_body = GetComponent<Rigidbody2D> ();
 		_audio = GetComponent<AudioSource> ();
+		_jumpTimer = 0f;
 		_jumping = false;
 		_firstHit = true;
 		_isHittingGround = false;
@@ -92,8 +94,11 @@ public class BallControl : MonoBehaviour {
 
 		CheckGround ();
 
-		if (_jumping) {
-			var hit = Physics2D.Raycast(transform.position, Vector2.down, 0.35f, JumpLayerMask);
+		if (_jumpTimer > 0f)
+			_jumpTimer -= Time.fixedDeltaTime;
+
+		if (_jumping && _jumpTimer <= 0f) {
+			var hit = Physics2D.Raycast(transform.position, Vector2.down, 0.3f, JumpLayerMask);
 			if (hit.collider != null)
 				_jumping = false;
 		}
@@ -110,6 +115,7 @@ public class BallControl : MonoBehaviour {
 			if (_isHittingGround) {
 				AudioHandler.Play("jump");
 				_jumping = true;
+				_jumpTimer = 0.15f;
 				_body.AddForce(new Vector2(0, JumpForce));
 			}
 		}
@@ -120,9 +126,33 @@ public class BallControl : MonoBehaviour {
 	
 	public void CheckGround() {
 
-		var hit = Physics2D.CircleCast(transform.position, 0.5f, Vector2.down, 0.5f, JumpLayerMask);
-		_isHittingGround = hit.collider != null;
+		_isHittingGround = false;
 		
+		Vector2 source = transform.position;
+		var dir = Vector2.zero;
+
+		var radius = 0.3f;
+
+		var hits = Physics2D.CircleCastAll(source, radius, Vector2.zero, 0f, JumpLayerMask);
+
+		for (var i = 0; i < hits.Length; i++) {
+			var hit = hits[i];
+			
+			if (hit.collider == null)
+				continue;
+
+			_isHittingGround = true;
+
+			dir += (hit.point - source).normalized;
+
+		}
+
+		dir.Normalize ();
+		
+		_body.AddForce(dir * 0.5f);
+
+		//Debug.DrawRay (transform.position, dir * radius, Color.black);
+
 		if (!_isHittingGround)
 			_shouldHitSound = true;
 
