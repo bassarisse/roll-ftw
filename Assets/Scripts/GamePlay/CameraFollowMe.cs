@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class CameraFollowMe : MonoBehaviour {
+	
+	public bool ResetStartPosition = false;
+	public Vector2 StartPosition = Vector2.zero;
 
 	void Start () {
 		Follow ();
@@ -27,6 +30,9 @@ public class CameraFollowMe : MonoBehaviour {
 			return;
 		
 		cameraFollow.target = this.gameObject;
+
+		if (ResetStartPosition)
+			cameraFollow.SetPosition(StartPosition);
 		
 		this.enabled = false;
 
