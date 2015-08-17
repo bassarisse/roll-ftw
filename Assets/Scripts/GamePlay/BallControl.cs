@@ -136,7 +136,7 @@ public class BallControl : MonoBehaviour {
 		
 		_audio.volume -= (_audio.volume - newVolume) * 0.1f;
 		
-		_audio.pitch = Mathf.Max (Mathf.Min (Mathf.Abs(_body.angularVelocity) / 1250.0f, 3f), 0.25f);
+		_audio.pitch = Mathf.Clamp (Mathf.Abs(_body.angularVelocity) / 1250.0f, 0.25f, 3f);
 
 	}
 	
