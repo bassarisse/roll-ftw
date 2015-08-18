@@ -12,6 +12,7 @@ public class BallControl : MonoBehaviour {
 	Rigidbody2D _body;
 	AudioSource _audio;
 	float _jumpTimer;
+	float _leapTimer;
 	bool _jumping;
 	bool _firstHit;
 	bool _isHittingGround;
@@ -96,6 +97,11 @@ public class BallControl : MonoBehaviour {
 
 		CheckGround ();
 
+		if (_isHittingGround)
+			_leapTimer = 0f;
+		else
+			_leapTimer += Time.fixedDeltaTime;
+
 		var finalSpeed = Speed + Mathf.Abs(_body.velocity.x) * 0.05f;
 
 		if (_jumpTimer > 0f)
@@ -116,7 +122,7 @@ public class BallControl : MonoBehaviour {
 		}
 
 		if (!_jumping && (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.UpArrow))) {
-			if (_isHittingGround) {
+			if (_isHittingGround || _leapTimer <= 0.075f) {
 				AudioHandler.Play("jump");
 				_jumping = true;
 				_jumpTimer = 0.15f;
