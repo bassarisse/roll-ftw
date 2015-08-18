@@ -25,8 +25,10 @@ public static class ColorMap {
 			}
 		}
 		output.Apply();
-		
+
+#if !UNITY_WEBPLAYER
 		System.IO.File.WriteAllBytes(Application.dataPath + "/Resolutioner/Resources/ProcessedPalettes/"+palette.name+".png", output.EncodeToPNG());
+#endif
 		AssetDatabase.Refresh();
 		return output;
 	}
