@@ -15,6 +15,7 @@ public class BallControl : MonoBehaviour {
 	bool _jumping;
 	bool _firstHit;
 	bool _isHittingGround;
+	bool _isHittingWall;
 	bool _shouldHitSound;
 	
 	Vector2 _storedVelocity;
@@ -39,6 +40,7 @@ public class BallControl : MonoBehaviour {
 		_jumping = false;
 		_firstHit = true;
 		_isHittingGround = false;
+		_isHittingWall = false;
 		_shouldHitSound = false;
 
 		Messenger.AddListener ("LevelStart", ActivateControl);
@@ -94,6 +96,8 @@ public class BallControl : MonoBehaviour {
 
 		CheckGround ();
 
+		var finalSpeed = Speed + Mathf.Abs(_body.velocity.x) * 0.05f;
+
 		if (_jumpTimer > 0f)
 			_jumpTimer -= Time.fixedDeltaTime;
 
@@ -104,11 +108,11 @@ public class BallControl : MonoBehaviour {
 		}
 		
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			_body.AddForce(new Vector2(-Speed, 0));
+			_body.AddForce(new Vector2(-finalSpeed, 0));
 		}
 		
 		if (Input.GetKey (KeyCode.RightArrow)) {
-			_body.AddForce(new Vector2(Speed, 0));
+			_body.AddForce(new Vector2(finalSpeed, 0));
 		}
 
 		if (!_jumping && (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.UpArrow))) {
@@ -116,7 +120,10 @@ public class BallControl : MonoBehaviour {
 				AudioHandler.Play("jump");
 				_jumping = true;
 				_jumpTimer = 0.15f;
-				_body.AddForce(new Vector2(0, JumpForce));
+				var finalJumpForce = JumpForce;
+				if (_body.velocity.y > 0 && _isHittingWall)
+					finalJumpForce += Mathf.Abs(_body.velocity.y) * 0.5f;
+				_body.AddForce(new Vector2(0, finalJumpForce));
 			}
 		}
 
@@ -152,6 +159,8 @@ public class BallControl : MonoBehaviour {
 		_body.AddForce(dir * 0.5f);
 
 		//Debug.DrawRay (transform.position, dir * radius, Color.black);
+
+		_isHittingWall = Mathf.Abs(dir.x) > 0.85f;
 
 		if (!_isHittingGround)
 			_shouldHitSound = true;
