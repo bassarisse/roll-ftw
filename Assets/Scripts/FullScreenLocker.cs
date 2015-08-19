@@ -28,33 +28,26 @@ public class FullScreenLockerHelper : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (Input.GetKeyDown(KeyCode.Alpha1)) {
+		if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
 			SetDesiredResolution(160, 144);
-		}
 		
-		if (Input.GetKeyDown(KeyCode.Alpha2)) {
+		if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
 			SetDesiredResolution(320, 288);
-		}
 		
-		if (Input.GetKeyDown(KeyCode.Alpha3)) {
+		if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
 			SetDesiredResolution(480, 432);
-		}
 		
-		if (Input.GetKeyDown(KeyCode.Alpha4)) {
+		if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
 			SetDesiredResolution(640, 576);
-		}
 		
-		if (Input.GetKeyDown(KeyCode.Alpha5)) {
+		if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))
 			SetDesiredResolution(800, 720);
-		}
 		
-		if (Input.GetKeyDown(KeyCode.Alpha6)) {
+		if (Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Keypad6))
 			SetDesiredResolution(960, 864);
-		}
 		
-		if (Input.GetKeyDown(KeyCode.Alpha7)) {
+		if (Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Keypad7))
 			SetDesiredResolution(1120, 1008);
-		}
 
 		//if (_lastWidth == Screen.width && _lastHeight == Screen.height)
 		//	return;
