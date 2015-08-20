@@ -4,18 +4,30 @@ using System.Collections;
 
 public class FullScreenLockerHelper : MonoBehaviour {
 	
+	private const string RESOLUTION_WIDTH_KEY = "ResWidth";
+	private const string RESOLUTION_HEIGHT_KEY = "ResHeight";
+	private const int DEFAULT_WIDTH = 480;
+	private const int DEFAULT_HEIGHT = 432;
+	
 	//int _lastWidth = 0;
 	//int _lastHeight = 0;
-	int _desiredWidth = 480;
-	int _desiredHeight = 432;
+	int _desiredWidth = DEFAULT_WIDTH;
+	int _desiredHeight = DEFAULT_HEIGHT;
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	void Awake () {
+		SetupResolution();
 		DontDestroyOnLoad(gameObject);	
+	}
+
+	void SetupResolution() {
+		SetDesiredResolution (
+			PlayerPrefs.GetInt(RESOLUTION_WIDTH_KEY, DEFAULT_WIDTH),
+			PlayerPrefs.GetInt(RESOLUTION_HEIGHT_KEY, DEFAULT_HEIGHT)
+			);
 	}
 
 	void SetDesiredResolution(int width, int height) {
@@ -63,6 +75,10 @@ public class FullScreenLockerHelper : MonoBehaviour {
 			else
 				newHeight = Mathf.CeilToInt((float)_desiredWidth * ((float)Screen.height / (float)Screen.width));
 			*/
+			
+			PlayerPrefs.SetInt(RESOLUTION_WIDTH_KEY, newWidth);
+			PlayerPrefs.SetInt(RESOLUTION_HEIGHT_KEY, newHeight);
+			PlayerPrefs.Save();
 
 			Screen.SetResolution(newWidth, newHeight, Screen.fullScreen);
 		}
