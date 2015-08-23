@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class GameOverControl : MonoBehaviour {
@@ -25,11 +25,11 @@ public class GameOverControl : MonoBehaviour {
 			AudioHandler.Play("win2", 0.65f);
 		}
 		
-		if (Input.GetKeyDown (KeyCode.RightArrow) ||
-		    Input.GetKeyDown (KeyCode.UpArrow) ||
-		    Input.GetKeyDown (KeyCode.Space) ||
-		    Input.GetKeyDown (KeyCode.Escape) ||
-		    Input.GetKeyDown (KeyCode.Return)) {
+		if (InputExtensions.Pressed.Right ||
+		    InputExtensions.Pressed.Up ||
+		    InputExtensions.Pressed.A ||
+		    InputExtensions.Pressed.B ||
+		    InputExtensions.Pressed.Start) {
 			if (fader == null) {
 				Exit();
 			} else {

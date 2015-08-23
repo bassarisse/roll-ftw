@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PaletteSwap : MonoBehaviour {
@@ -47,7 +47,7 @@ public class PaletteSwap : MonoBehaviour {
 		if (!this.EnableSwap)
 			return;
 		
-		if (EnableUp && Input.GetKeyDown(KeyCode.UpArrow))
+		if (EnableUp && InputExtensions.Pressed.Up)
 		{
 			PaletteSwap.PaletteIndex++;
 			if (PaletteSwap.PaletteIndex >= _palettes.Length)
@@ -56,7 +56,7 @@ public class PaletteSwap : MonoBehaviour {
 			UpdatePalette();
 		}
 		
-		if (EnableDown && Input.GetKeyDown(KeyCode.DownArrow))
+		if (EnableDown && InputExtensions.Pressed.Down)
 		{
 			PaletteSwap.PaletteIndex--;
 			if (PaletteSwap.PaletteIndex < 0)

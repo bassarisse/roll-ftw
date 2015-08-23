@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class TitleScreenControl : MonoBehaviour {
@@ -15,7 +15,7 @@ public class TitleScreenControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (GameState.MaxReachedLevel > 1 && Input.GetKeyDown (KeyCode.LeftArrow)) {
+		if (GameState.MaxReachedLevel > 1 && InputExtensions.Pressed.Left) {
 			if (fader == null) {
 				LevelSelect();
 			} else {
@@ -27,7 +27,7 @@ public class TitleScreenControl : MonoBehaviour {
 			return;
 		}
 		
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+		if (InputExtensions.Pressed.Up) {
 			if (fader == null) {
 				OpenAbout();
 			} else {
@@ -39,9 +39,9 @@ public class TitleScreenControl : MonoBehaviour {
 			return;
 		}
 		
-		if (Input.GetKeyDown (KeyCode.RightArrow) ||
-		    Input.GetKeyDown (KeyCode.Space) ||
-		    Input.GetKeyDown (KeyCode.Return)) {
+		if (InputExtensions.Pressed.Right ||
+		    InputExtensions.Pressed.A ||
+		    InputExtensions.Pressed.Start) {
 			if (fader == null) {
 				StartGame();
 			} else {

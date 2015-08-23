@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class HelpControl : MonoBehaviour {
@@ -15,9 +15,9 @@ public class HelpControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (Input.GetKeyDown (KeyCode.RightArrow) ||
-		    Input.GetKeyDown (KeyCode.Space) ||
-		    Input.GetKeyDown (KeyCode.Return)) {
+		if (InputExtensions.Pressed.Right ||
+		    InputExtensions.Pressed.A ||
+		    InputExtensions.Pressed.Start) {
 			if (fader == null) {
 				StartGame();
 			} else {
@@ -28,9 +28,9 @@ public class HelpControl : MonoBehaviour {
 			this.enabled = false;
 			return;
 		}
-		
-		if (Input.GetKeyDown (KeyCode.LeftArrow) ||
-		    Input.GetKeyDown (KeyCode.Escape)) {
+
+		if (InputExtensions.Pressed.Left ||
+		    InputExtensions.Pressed.B) {
 			if (fader == null) {
 				ReturnToTitleScreen();
 			} else {

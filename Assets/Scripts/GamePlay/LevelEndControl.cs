@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,7 +15,7 @@ public class LevelEndControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (Input.GetKeyDown(KeyCode.UpArrow))
+		if (InputExtensions.Pressed.Up)
 		{
 			if (fader == null) {
 				ReturnToTitleScreen();
@@ -28,7 +28,7 @@ public class LevelEndControl : MonoBehaviour {
 			return;
 		}
 		
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		if (InputExtensions.Pressed.Left)
 		{
 			if (fader == null) {
 				RestartLevel();
@@ -41,10 +41,9 @@ public class LevelEndControl : MonoBehaviour {
 			return;
 		}
 		
-		if (Input.GetKeyDown (KeyCode.RightArrow) ||
-		    Input.GetKeyDown (KeyCode.Space) ||
-		    Input.GetKeyDown (KeyCode.Return))
-		{
+		if (InputExtensions.Pressed.Right ||
+		    InputExtensions.Pressed.A ||
+		    InputExtensions.Pressed.Start) {
 			if (fader == null) {
 				NextLevel();
 			} else {

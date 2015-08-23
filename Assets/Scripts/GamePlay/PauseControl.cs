@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PauseControl : MonoBehaviour {
@@ -32,7 +32,7 @@ public class PauseControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKeyDown (KeyCode.Return)) {
+		if (InputExtensions.Pressed.Start) {
 
 			_paused = !_paused;
 
@@ -49,7 +49,7 @@ public class PauseControl : MonoBehaviour {
 		if (!_paused)
 			return;
 		
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		if (InputExtensions.Pressed.Left)
 		{
 			if (fader == null) {
 				RestartLevel();
@@ -62,7 +62,7 @@ public class PauseControl : MonoBehaviour {
 			return;
 		}
 		
-		if (Input.GetKeyDown (KeyCode.DownArrow))
+		if (InputExtensions.Pressed.Down)
 		{
 			if (fader == null) {
 				ReturnToTitleScreen();

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class LevelSelectControl : MonoBehaviour {
@@ -18,7 +18,7 @@ public class LevelSelectControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+		if (InputExtensions.Pressed.Up) {
 			GameState.CurrentLevel++;
 			if (GameState.CurrentLevel > GameState.MaxReachedLevel)
 				GameState.CurrentLevel = GameState.MaxReachedLevel;
@@ -26,7 +26,7 @@ public class LevelSelectControl : MonoBehaviour {
 				AudioHandler.Play("cursor");
 		}
 		
-		if (Input.GetKeyDown (KeyCode.DownArrow)) {
+		if (InputExtensions.Pressed.Down) {
 			GameState.CurrentLevel--;
 			if (GameState.CurrentLevel < 1)
 				GameState.CurrentLevel = 1;
@@ -34,9 +34,9 @@ public class LevelSelectControl : MonoBehaviour {
 				AudioHandler.Play("cursor");
 		}
 		
-		if (Input.GetKeyDown (KeyCode.LeftArrow) ||
-		    Input.GetKeyDown (KeyCode.Space) ||
-		    Input.GetKeyDown (KeyCode.Return)) {
+		if (InputExtensions.Pressed.Left ||
+		    InputExtensions.Pressed.A ||
+		    InputExtensions.Pressed.Start) {
 			if (fader == null) {
 				StartGame();
 			} else {
@@ -48,8 +48,8 @@ public class LevelSelectControl : MonoBehaviour {
 			return;
 		}
 		
-		if (Input.GetKeyDown (KeyCode.RightArrow) ||
-		    Input.GetKeyDown (KeyCode.Escape)) {
+		if (InputExtensions.Pressed.Right ||
+		    InputExtensions.Pressed.B) {
 			if (fader == null) {
 				ReturnToTitleScreen();
 			} else {

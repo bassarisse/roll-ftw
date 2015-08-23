@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class AboutControl : MonoBehaviour {
@@ -15,10 +15,10 @@ public class AboutControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (Input.GetKeyDown (KeyCode.DownArrow) ||
-		    Input.GetKeyDown (KeyCode.Escape) ||
-		    Input.GetKeyDown (KeyCode.Space) ||
-		    Input.GetKeyDown (KeyCode.Return)) {
+		if (InputExtensions.Pressed.Down ||
+		    InputExtensions.Pressed.A ||
+		    InputExtensions.Pressed.B ||
+		    InputExtensions.Pressed.Start) {
 			if (fader == null) {
 				ReturnToTitleScreen();
 			} else {

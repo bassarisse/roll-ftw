@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -113,15 +113,15 @@ public class BallControl : MonoBehaviour {
 				_jumping = false;
 		}
 		
-		if (Input.GetKey (KeyCode.LeftArrow)) {
+		if (InputExtensions.Holding.Left) {
 			_body.AddForce(new Vector2(-finalSpeed, 0));
 		}
 		
-		if (Input.GetKey (KeyCode.RightArrow)) {
+		if (InputExtensions.Holding.Right) {
 			_body.AddForce(new Vector2(finalSpeed, 0));
 		}
 
-		if (!_jumping && (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.UpArrow))) {
+		if (!_jumping && (InputExtensions.Pressed.A || InputExtensions.Pressed.Up)) {
 			if (_isHittingGround || _leapTimer <= 0.075f) {
 				AudioHandler.Play("jump");
 				_jumping = true;
