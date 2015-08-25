@@ -304,6 +304,7 @@ GameObject:
   - 222: {fileID: 602077072}
   - 114: {fileID: 602077071}
   - 114: {fileID: 602077070}
+  - 114: {fileID: 602077073}
   m_Layer: 5
   m_Name: Down Arrow
   m_TagString: Untagged
@@ -377,6 +378,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 602077068}
+--- !u!114 &602077073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 602077068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReceiveInputs: 0
+  ArrowDirection: 1
+  ExtraArrowDirection: 4
+  Shake: {x: 0, y: 3}
+  ShakeTime: .5
+  LinkedGraphics:
+  - {fileID: 1416579302}
 --- !u!1 &858823414
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: 7e7f1e1e564e0430980bac69857054c2,
+  currentPaletteTexture: {fileID: 2800000, guid: 2601776c8d79142f483811ea10c221f9,
     type: 3}
 --- !u!114 &1523674970
 MonoBehaviour:

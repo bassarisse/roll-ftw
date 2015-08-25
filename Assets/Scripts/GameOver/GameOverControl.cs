@@ -36,8 +36,9 @@ public class GameOverControl : MonoBehaviour {
 				fader.SetColor(new Color(0, 0, 0, 0));
 				fader.Play(true, gameObject, "Exit");
 			}
-			this.enabled = false;
 			AudioHandler.Play("selection");
+			ArrowFeedback.Right();
+			this.enabled = false;
 			return;
 		}
 

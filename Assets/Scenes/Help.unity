@@ -98,6 +98,7 @@ GameObject:
   - 222: {fileID: 38960372}
   - 114: {fileID: 38960371}
   - 114: {fileID: 38960370}
+  - 114: {fileID: 38960373}
   m_Layer: 5
   m_Name: Left Arrow
   m_TagString: Untagged
@@ -171,6 +172,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 38960368}
+--- !u!114 &38960373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38960368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedGraphics:
+  - {fileID: 1423854310}
+  ArrowDirection: 2
+  ExtraArrowDirection: 4
+  Shake: {x: 3, y: 0}
+  ShakeTime: .5
 --- !u!1 &322091290
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +472,7 @@ GameObject:
   - 222: {fileID: 701389778}
   - 114: {fileID: 701389777}
   - 114: {fileID: 701389776}
+  - 114: {fileID: 701389775}
   m_Layer: 5
   m_Name: Right Arrow
   m_TagString: Untagged
@@ -478,6 +497,23 @@ RectTransform:
   m_AnchoredPosition: {x: -9.5, y: 0}
   m_SizeDelta: {x: 17, y: 16}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &701389775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 701389773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedGraphics:
+  - {fileID: 634894651}
+  ArrowDirection: 3
+  ExtraArrowDirection: 4
+  Shake: {x: 3, y: 0}
+  ShakeTime: .5
 --- !u!114 &701389776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,7 +1279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: fd5cb4ddc887c47c394f721644dd0b87,
+  currentPaletteTexture: {fileID: 2800000, guid: 96d125364c30c4c84b9ae3a699de4061,
     type: 3}
 --- !u!114 &1523674970
 MonoBehaviour:

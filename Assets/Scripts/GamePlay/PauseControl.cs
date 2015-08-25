@@ -58,6 +58,7 @@ public class PauseControl : MonoBehaviour {
 				fader.Play(true, gameObject, "RestartLevel");
 			}
 			AudioHandler.Play("selection");
+			ArrowFeedback.Left();
 			this.enabled = false;
 			return;
 		}
@@ -71,6 +72,7 @@ public class PauseControl : MonoBehaviour {
 				fader.Play(true, gameObject, "ReturnToTitleScreen");
 			}
 			AudioHandler.Play("selection");
+			ArrowFeedback.Down();
 			this.enabled = false;
 			return;
 		}

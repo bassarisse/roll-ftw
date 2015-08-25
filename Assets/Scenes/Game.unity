@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: 2601776c8d79142f483811ea10c221f9,
+  currentPaletteTexture: {fileID: 2800000, guid: 96d125364c30c4c84b9ae3a699de4061,
     type: 3}
 --- !u!114 &35665998
 MonoBehaviour:
@@ -636,6 +636,7 @@ GameObject:
   - 114: {fileID: 232009334}
   - 114: {fileID: 232009333}
   - 114: {fileID: 232009332}
+  - 114: {fileID: 232009336}
   m_Layer: 5
   m_Name: Up Arrow
   m_TagString: Untagged
@@ -721,6 +722,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 232009330}
+--- !u!114 &232009336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 232009330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedGraphics:
+  - {fileID: 1060924521}
+  ArrowDirection: 0
+  Shake: {x: 0, y: 3}
+  ShakeTime: .5
 --- !u!1 &583957609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,6 +1086,8 @@ GameObject:
   - 114: {fileID: 705894186}
   - 114: {fileID: 705894185}
   - 114: {fileID: 705894184}
+  - 114: {fileID: 705894189}
+  - 114: {fileID: 705894188}
   m_Layer: 5
   m_Name: Right Arrow
   m_TagString: Untagged
@@ -1090,8 +1109,8 @@ RectTransform:
   m_RootOrder: 9
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: -9.5, y: 0}
-  m_SizeDelta: {x: 17, y: 16}
+  m_AnchoredPosition: {x: -9, y: 0}
+  m_SizeDelta: {x: 16, y: 16}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &705894184
 MonoBehaviour:
@@ -1154,6 +1173,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 705894182}
+--- !u!114 &705894188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 705894182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedGraphics:
+  - {fileID: 1763256139}
+  ArrowDirection: 3
+  Shake: {x: 3, y: 0}
+  ShakeTime: .5
+--- !u!114 &705894189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 705894182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedGraphics: []
+  ArrowDirection: 0
+  Shake: {x: 0, y: 0}
+  ShakeTime: .5
 --- !u!1 &864580131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,6 +1217,7 @@ GameObject:
   - 114: {fileID: 864580133}
   - 114: {fileID: 864580136}
   - 114: {fileID: 864580137}
+  - 114: {fileID: 864580138}
   m_Layer: 5
   m_Name: Left Arrow
   m_TagString: Untagged
@@ -1185,7 +1236,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1264460396}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0, y: .5}
   m_AnchorMax: {x: 0, y: .5}
   m_AnchoredPosition: {x: 9, y: 0}
@@ -1264,6 +1315,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 864580134}
+--- !u!114 &864580138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 864580131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedGraphics:
+  - {fileID: 2098073486}
+  ArrowDirection: 2
+  Shake: {x: 3, y: 0}
+  ShakeTime: .5
 --- !u!1 &958521627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,7 +1457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: 2601776c8d79142f483811ea10c221f9,
+  currentPaletteTexture: {fileID: 2800000, guid: 96d125364c30c4c84b9ae3a699de4061,
     type: 3}
 --- !u!114 &958521634
 MonoBehaviour:
@@ -1529,7 +1596,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1264460396}
-  m_RootOrder: 13
+  m_RootOrder: 10
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
   m_AnchoredPosition: {x: 6, y: 3}
@@ -1628,13 +1695,13 @@ RectTransform:
   - {fileID: 637499455}
   - {fileID: 2001839867}
   - {fileID: 232009331}
-  - {fileID: 864580132}
   - {fileID: 1334977281}
+  - {fileID: 864580132}
   - {fileID: 705894183}
-  - {fileID: 1763256136}
-  - {fileID: 2098073483}
-  - {fileID: 1704967930}
   - {fileID: 1060924518}
+  - {fileID: 1704967930}
+  - {fileID: 2098073483}
+  - {fileID: 1763256136}
   - {fileID: 1371006580}
   - {fileID: 705709969}
   m_Father: {fileID: 0}
@@ -1735,6 +1802,7 @@ GameObject:
   - 114: {fileID: 1334977283}
   - 114: {fileID: 1334977282}
   - 114: {fileID: 1334977286}
+  - 114: {fileID: 1334977287}
   m_Layer: 5
   m_Name: Down Arrow
   m_TagString: Untagged
@@ -1753,7 +1821,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1264460396}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
   m_AnchoredPosition: {x: 0, y: 9}
@@ -1832,6 +1900,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1334977284}
+--- !u!114 &1334977287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1334977280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedGraphics:
+  - {fileID: 670632998}
+  - {fileID: 1704967933}
+  ArrowDirection: 1
+  Shake: {x: 0, y: 3}
+  ShakeTime: .5
 --- !u!1 &1371006579
 GameObject:
   m_ObjectHideFlags: 0
@@ -2010,7 +2095,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1264460396}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
   m_AnchoredPosition: {x: 6, y: 13}
@@ -2102,7 +2187,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1264460396}
-  m_RootOrder: 10
+  m_RootOrder: 13
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
   m_AnchoredPosition: {x: -80, y: -1}
@@ -2402,7 +2487,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1264460396}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_AnchorMin: {x: 0, y: .5}
   m_AnchorMax: {x: 0, y: .5}
   m_AnchoredPosition: {x: 80, y: -1}

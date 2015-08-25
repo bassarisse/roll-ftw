@@ -53,6 +53,7 @@ public class PaletteSwap : MonoBehaviour {
 			if (PaletteSwap.PaletteIndex >= _palettes.Length)
 				PaletteSwap.PaletteIndex = 0;
 			AudioHandler.Play("palette_change");
+			ArrowFeedback.Up();
 			UpdatePalette();
 		}
 		
@@ -62,6 +63,7 @@ public class PaletteSwap : MonoBehaviour {
 			if (PaletteSwap.PaletteIndex < 0)
 				PaletteSwap.PaletteIndex = _palettes.Length - 1;
 			AudioHandler.Play("palette_change");
+			ArrowFeedback.Down();
 			UpdatePalette();
 		}
 	

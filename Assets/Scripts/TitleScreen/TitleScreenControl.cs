@@ -23,6 +23,7 @@ public class TitleScreenControl : MonoBehaviour {
 				fader.Play(true, gameObject, "LevelSelect");
 			}
 			AudioHandler.Play("selection");
+			ArrowFeedback.Left();
 			this.enabled = false;
 			return;
 		}
@@ -35,6 +36,7 @@ public class TitleScreenControl : MonoBehaviour {
 				fader.Play(true, gameObject, "OpenAbout");
 			}
 			AudioHandler.Play("selection");
+			ArrowFeedback.Up();
 			this.enabled = false;
 			return;
 		}
@@ -49,6 +51,7 @@ public class TitleScreenControl : MonoBehaviour {
 				fader.Play(true, gameObject, "StartGame");
 			}
 			AudioHandler.Play("selection");
+			ArrowFeedback.Right();
 			this.enabled = false;
 			return;
 		}

@@ -98,6 +98,7 @@ GameObject:
   - 222: {fileID: 38960372}
   - 114: {fileID: 38960371}
   - 114: {fileID: 38960370}
+  - 114: {fileID: 38960373}
   m_Layer: 5
   m_Name: Left Arrow
   m_TagString: Untagged
@@ -116,7 +117,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1267142014}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: .5}
   m_AnchorMax: {x: 0, y: .5}
   m_AnchoredPosition: {x: 9, y: 0}
@@ -171,6 +172,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 38960368}
+--- !u!114 &38960373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38960368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedGraphics:
+  - {fileID: 1423854310}
+  ArrowDirection: 2
+  ExtraArrowDirection: 4
+  Shake: {x: 3, y: 0}
+  ShakeTime: .5
 --- !u!1 &484837446
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +275,7 @@ GameObject:
   - 114: {fileID: 602077071}
   - 114: {fileID: 602077070}
   - 114: {fileID: 602077073}
+  - 114: {fileID: 602077074}
   m_Layer: 5
   m_Name: Down Arrow
   m_TagString: Untagged
@@ -342,6 +361,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 602077071}
+--- !u!114 &602077074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 602077068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedGraphics: []
+  ArrowDirection: 1
+  ExtraArrowDirection: 4
+  Shake: {x: 0, y: 3}
+  ShakeTime: .5
 --- !u!1 &634894647
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +454,7 @@ GameObject:
   - 222: {fileID: 701389778}
   - 114: {fileID: 701389777}
   - 114: {fileID: 701389776}
+  - 114: {fileID: 701389775}
   m_Layer: 5
   m_Name: Right Arrow
   m_TagString: Untagged
@@ -437,12 +473,29 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1267142014}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
   m_AnchoredPosition: {x: -9.5, y: 0}
   m_SizeDelta: {x: 17, y: 16}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &701389775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 701389773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedGraphics:
+  - {fileID: 634894651}
+  ArrowDirection: 3
+  ExtraArrowDirection: 4
+  Shake: {x: 3, y: 0}
+  ShakeTime: .5
 --- !u!114 &701389776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,6 +635,7 @@ GameObject:
   - 114: {fileID: 1064558127}
   - 114: {fileID: 1064558126}
   - 114: {fileID: 1064558129}
+  - 114: {fileID: 1064558130}
   m_Layer: 5
   m_Name: Up Arrow
   m_TagString: Untagged
@@ -667,6 +721,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1064558127}
+--- !u!114 &1064558130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1064558124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedGraphics: []
+  ArrowDirection: 0
+  ExtraArrowDirection: 4
+  Shake: {x: 0, y: 3}
+  ShakeTime: .5
 --- !u!1 &1267142010
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,8 +821,8 @@ RectTransform:
   m_Children:
   - {fileID: 1064558125}
   - {fileID: 602077069}
-  - {fileID: 701389774}
   - {fileID: 38960369}
+  - {fileID: 701389774}
   - {fileID: 634894648}
   - {fileID: 1423854308}
   - {fileID: 1381688508}
@@ -1106,7 +1176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: fd5cb4ddc887c47c394f721644dd0b87,
+  currentPaletteTexture: {fileID: 2800000, guid: 96d125364c30c4c84b9ae3a699de4061,
     type: 3}
 --- !u!114 &1523674970
 MonoBehaviour:

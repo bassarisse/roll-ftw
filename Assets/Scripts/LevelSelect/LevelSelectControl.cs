@@ -24,6 +24,7 @@ public class LevelSelectControl : MonoBehaviour {
 				GameState.CurrentLevel = GameState.MaxReachedLevel;
 			else
 				AudioHandler.Play("cursor");
+			ArrowFeedback.Up();
 		}
 		
 		if (InputExtensions.Pressed.Down) {
@@ -32,6 +33,7 @@ public class LevelSelectControl : MonoBehaviour {
 				GameState.CurrentLevel = 1;
 			else
 				AudioHandler.Play("cursor");
+			ArrowFeedback.Down();
 		}
 		
 		if (InputExtensions.Pressed.Left ||
@@ -44,6 +46,7 @@ public class LevelSelectControl : MonoBehaviour {
 				fader.Play(true, gameObject, "StartGame");
 			}
 			AudioHandler.Play("selection");
+			ArrowFeedback.Left();
 			this.enabled = false;
 			return;
 		}
@@ -57,6 +60,7 @@ public class LevelSelectControl : MonoBehaviour {
 				fader.Play(true, gameObject, "ReturnToTitleScreen");
 			}
 			AudioHandler.Play("selection");
+			ArrowFeedback.Right();
 			this.enabled = false;
 			return;
 		}

@@ -26,6 +26,7 @@ public class AboutControl : MonoBehaviour {
 				fader.Play(true, gameObject, "ReturnToTitleScreen");
 			}
 			AudioHandler.Play("selection");
+			ArrowFeedback.Down();
 			this.enabled = false;
 			return;
 		}

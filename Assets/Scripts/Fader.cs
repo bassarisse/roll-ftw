@@ -22,15 +22,15 @@ public class Fader : MonoBehaviour {
 		SetColor (StartColor);
 
 		if (AutoPlay)
-			Play (false);
+			Play ();
 		
 	}
 	
 	public void Play(GameObject completeTarget = null, string completeCallback = null) {
-		Play (completeTarget, completeCallback);
+		Play (false, completeTarget, completeCallback);
 	}
 	
-	public void Play(bool reverse = false, GameObject completeTarget = null, string completeCallback = null) {
+	public void Play(bool reverse, GameObject completeTarget = null, string completeCallback = null) {
 
 		var hash = iTween.Hash (
 			"from", reverse ? AlphaTo : AlphaFrom,

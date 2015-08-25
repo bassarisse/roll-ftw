@@ -24,6 +24,7 @@ public class LevelEndControl : MonoBehaviour {
 				fader.Play(true, gameObject, "ReturnToTitleScreen");
 			}
 			AudioHandler.Play("selection");
+			ArrowFeedback.Up();
 			this.enabled = false;
 			return;
 		}
@@ -37,6 +38,7 @@ public class LevelEndControl : MonoBehaviour {
 				fader.Play(true, gameObject, "RestartLevel");
 			}
 			AudioHandler.Play("selection");
+			ArrowFeedback.Left();
 			this.enabled = false;
 			return;
 		}
@@ -51,6 +53,7 @@ public class LevelEndControl : MonoBehaviour {
 				fader.Play(true, gameObject, "NextLevel");
 			}
 			AudioHandler.Play("selection");
+			ArrowFeedback.Right();
 			this.enabled = false;
 			return;
 		}
