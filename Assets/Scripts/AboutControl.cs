@@ -1,15 +1,23 @@
 using UnityEngine;
 using System.Collections;
 
-public class AboutControl : MonoBehaviour {
-	
-	public Fader fader;
+public class AboutControl : BaseControl {
 	
 	// Use this for initialization
 	void Start () {
 		
 		AudioHandler.Load ("selection");
+
+		Messenger.AddListener ("Touch.Down", TriggerReturnToTitleScreen);
 		
+	}
+
+	void Disable() {
+
+		this.enabled = false;
+
+		Messenger.RemoveListener ("Touch.Down", TriggerReturnToTitleScreen);
+
 	}
 	
 	// Update is called once per frame
@@ -19,18 +27,17 @@ public class AboutControl : MonoBehaviour {
 		    InputExtensions.Pressed.A ||
 		    InputExtensions.Pressed.B ||
 		    InputExtensions.Pressed.Start) {
-			if (fader == null) {
-				ReturnToTitleScreen();
-			} else {
-				fader.SetColor(new Color(0, 0, 0, 0));
-				fader.Play(true, gameObject, "ReturnToTitleScreen");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Down();
-			this.enabled = false;
+			TriggerReturnToTitleScreen();
 			return;
 		}
 		
+	}
+	
+	void TriggerReturnToTitleScreen() {
+		Disable();
+		TriggerFade(ReturnToTitleScreen, new Color(0, 0, 0, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Down();
 	}
 	
 	void ReturnToTitleScreen() {

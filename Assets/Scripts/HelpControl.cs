@@ -1,14 +1,24 @@
 using UnityEngine;
 using System.Collections;
 
-public class HelpControl : MonoBehaviour {
-	
-	public Fader fader;
+public class HelpControl : BaseControl {
 	
 	// Use this for initialization
 	void Start () {
 		
 		AudioHandler.Load ("selection");
+		
+		Messenger.AddListener ("Touch.Left", TriggerReturnToTitleScreen);
+		Messenger.AddListener ("Touch.Right", TriggerGameStart);
+		
+	}
+	
+	void Disable() {
+		
+		this.enabled = false;
+		
+		Messenger.RemoveListener ("Touch.Left", TriggerReturnToTitleScreen);
+		Messenger.RemoveListener ("Touch.Right", TriggerGameStart);
 		
 	}
 	
@@ -18,36 +28,34 @@ public class HelpControl : MonoBehaviour {
 		if (InputExtensions.Pressed.Right ||
 		    InputExtensions.Pressed.A ||
 		    InputExtensions.Pressed.Start) {
-			if (fader == null) {
-				StartGame();
-			} else {
-				fader.SetColor(new Color(1, 1, 1, 0));
-				fader.Play(true, gameObject, "StartGame");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Right();
-			this.enabled = false;
+			TriggerGameStart();
 			return;
 		}
 
 		if (InputExtensions.Pressed.Left ||
 		    InputExtensions.Pressed.B) {
-			if (fader == null) {
-				ReturnToTitleScreen();
-			} else {
-				fader.SetColor(new Color(0, 0, 0, 0));
-				fader.Play(true, gameObject, "ReturnToTitleScreen");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Left();
-			this.enabled = false;
+			TriggerReturnToTitleScreen();
 			return;
 		}
 		
 	}
 	
-	void StartGame() {
+	void TriggerGameStart() {
+		Disable ();
+		TriggerFade(GameStart, new Color(1, 1, 1, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Right();
+	}
+	
+	void GameStart() {
 		GameState.LoadLevel (1);
+	}
+	
+	void TriggerReturnToTitleScreen() {
+		Disable ();
+		TriggerFade(ReturnToTitleScreen, new Color(0, 0, 0, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Left();
 	}
 	
 	void ReturnToTitleScreen() {

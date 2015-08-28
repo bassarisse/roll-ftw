@@ -2,14 +2,26 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class LevelEndControl : MonoBehaviour {
-	
-	public Fader fader;
+public class LevelEndControl : BaseControl {
 
 	void Start() {
 		
 		AudioHandler.Load ("selection");
+		
+		Messenger.AddListener ("Touch.Up", TriggerReturnToTitleScreen);
+		Messenger.AddListener ("Touch.Left", TriggerRestartLevel);
+		Messenger.AddListener ("Touch.Right", TriggerNextLevel);
 
+	}
+	
+	void Disable() {
+		
+		this.enabled = false;
+		
+		Messenger.RemoveListener ("Touch.Up", TriggerReturnToTitleScreen);
+		Messenger.RemoveListener ("Touch.Left", TriggerRestartLevel);
+		Messenger.RemoveListener ("Touch.Right", TriggerNextLevel);
+		
 	}
 	
 	// Update is called once per frame
@@ -17,55 +29,52 @@ public class LevelEndControl : MonoBehaviour {
 		
 		if (InputExtensions.Pressed.Up)
 		{
-			if (fader == null) {
-				ReturnToTitleScreen();
-			} else {
-				fader.SetColor(new Color(0, 0, 0, 0));
-				fader.Play(true, gameObject, "ReturnToTitleScreen");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Up();
-			this.enabled = false;
+			TriggerReturnToTitleScreen();
 			return;
 		}
 		
 		if (InputExtensions.Pressed.Left)
 		{
-			if (fader == null) {
-				RestartLevel();
-			} else {
-				fader.SetColor(new Color(1, 1, 1, 0));
-				fader.Play(true, gameObject, "RestartLevel");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Left();
-			this.enabled = false;
+			TriggerRestartLevel();
 			return;
 		}
 		
 		if (InputExtensions.Pressed.Right ||
 		    InputExtensions.Pressed.A ||
 		    InputExtensions.Pressed.Start) {
-			if (fader == null) {
-				NextLevel();
-			} else {
-				fader.SetColor(new Color(1, 1, 1, 0));
-				fader.Play(true, gameObject, "NextLevel");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Right();
-			this.enabled = false;
+			TriggerNextLevel();
 			return;
 		}
 		
+	}
+	
+	void TriggerNextLevel() {
+		Disable ();
+		TriggerFade(NextLevel, new Color(1, 1, 1, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Right();
 	}
 	
 	void NextLevel() {
 		GameState.LoadNextLevel();
 	}
 	
+	void TriggerRestartLevel() {
+		Disable ();
+		TriggerFade(RestartLevel, new Color(1, 1, 1, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Left();
+	}
+	
 	void RestartLevel() {
 		GameState.LoadLevel();
+	}
+	
+	void TriggerReturnToTitleScreen() {
+		Disable ();
+		TriggerFade(ReturnToTitleScreen, new Color(0, 0, 0, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Up();
 	}
 	
 	void ReturnToTitleScreen() {

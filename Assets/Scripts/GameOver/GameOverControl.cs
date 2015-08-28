@@ -1,9 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GameOverControl : MonoBehaviour {
-
-	public Fader fader;
+public class GameOverControl : BaseControl {
 
 	bool _firstUpdate;
 
@@ -14,7 +12,19 @@ public class GameOverControl : MonoBehaviour {
 		
 		AudioHandler.Load ("selection");
 		AudioHandler.Load ("win2");
+		
+		Messenger.AddListener ("Touch.Up", TriggerExit);
+		Messenger.AddListener ("Touch.Right", TriggerExit);
 
+	}
+	
+	void Disable() {
+		
+		this.enabled = false;
+
+		Messenger.RemoveListener ("Touch.Up", TriggerExit);
+		Messenger.RemoveListener ("Touch.Right", TriggerExit);
+		
 	}
 	
 	// Update is called once per frame
@@ -30,18 +40,17 @@ public class GameOverControl : MonoBehaviour {
 		    InputExtensions.Pressed.A ||
 		    InputExtensions.Pressed.B ||
 		    InputExtensions.Pressed.Start) {
-			if (fader == null) {
-				Exit();
-			} else {
-				fader.SetColor(new Color(0, 0, 0, 0));
-				fader.Play(true, gameObject, "Exit");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Right();
-			this.enabled = false;
+			TriggerExit();
 			return;
 		}
 
+	}
+	
+	void TriggerExit() {
+		Disable ();
+		TriggerFade(Exit, new Color(0, 0, 0, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Right();
 	}
 
 	void Exit() {

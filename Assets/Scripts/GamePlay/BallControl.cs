@@ -102,8 +102,6 @@ public class BallControl : MonoBehaviour {
 		else
 			_leapTimer += Time.fixedDeltaTime;
 
-		var finalSpeed = Speed + Mathf.Abs(_body.velocity.x) * 0.05f;
-
 		if (_jumpTimer > 0f)
 			_jumpTimer -= Time.fixedDeltaTime;
 
@@ -113,31 +111,71 @@ public class BallControl : MonoBehaviour {
 				_jumping = false;
 		}
 		
-		if (InputExtensions.Holding.Left) {
+		var leftIsTouched = false;
+		var rightIsTouched = false;
+		
+		if (Input.touchCount > 0 && Input.touchCount < 3) {
+
+			var halfWidth = Screen.width / 2;
+			var halfHeight = Screen.height / 2;
+
+			for (var i = 0; i < Input.touchCount; i++) {
+				var touch = Input.GetTouch (i);
+				
+				if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary) {
+					
+					if (!leftIsTouched && touch.position.y < halfHeight && touch.position.x < halfWidth)
+						leftIsTouched = true;
+					
+					if (!rightIsTouched && touch.position.y < halfHeight && touch.position.x >= halfWidth)
+						rightIsTouched = true;
+					
+				}
+				
+				if (touch.phase == TouchPhase.Began && touch.position.y >= halfHeight) {
+					Jump ();
+				}
+				
+			}
+		}
+		
+		var finalSpeed = Speed + Mathf.Abs(_body.velocity.x) * 0.05f;
+		
+		if (leftIsTouched || InputExtensions.Holding.Left) {
 			_body.AddForce(new Vector2(-finalSpeed, 0));
 		}
 		
-		if (InputExtensions.Holding.Right) {
+		if (rightIsTouched || InputExtensions.Holding.Right) {
 			_body.AddForce(new Vector2(finalSpeed, 0));
 		}
 
-		if (!_jumping && (InputExtensions.Pressed.A || InputExtensions.Pressed.Up)) {
-			if (_isHittingGround || _leapTimer <= 0.075f) {
-				AudioHandler.Play("jump");
-				_jumping = true;
-				_jumpTimer = 0.15f;
-				var finalJumpForce = JumpForce;
-				if (_body.velocity.y > 0 && _isHittingWall)
-					finalJumpForce += Mathf.Abs(_body.velocity.y) * 0.5f;
-				_body.AddForce(new Vector2(0, finalJumpForce));
-			}
+		if (InputExtensions.Pressed.A || InputExtensions.Pressed.Up) {
+			Jump();
 		}
 
 		UpdateAudio ();
 		
 	}
+
+	void Jump() {
+
+		if (_jumping)
+			return;
+
+		if (!_isHittingGround && _leapTimer > 0.075f)
+			return;
+
+		AudioHandler.Play("jump");
+		_jumping = true;
+		_jumpTimer = 0.15f;
+		var finalJumpForce = JumpForce;
+		if (_body.velocity.y > 0 && _isHittingWall)
+			finalJumpForce += Mathf.Abs(_body.velocity.y) * 0.5f;
+		_body.AddForce(new Vector2(0, finalJumpForce));
+		
+	}
 	
-	public void CheckGround() {
+	void CheckGround() {
 
 		_isHittingGround = false;
 		
@@ -173,7 +211,7 @@ public class BallControl : MonoBehaviour {
 
 	}
 	
-	public void UpdateAudio() {
+	void UpdateAudio() {
 		
 		var newVolume = Mathf.Min (Mathf.Abs(_body.velocity.magnitude) / 30.0f, 0.75f);
 		if (!_isHittingGround)

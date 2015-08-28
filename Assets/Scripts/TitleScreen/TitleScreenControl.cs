@@ -1,69 +1,80 @@
 using UnityEngine;
 using System.Collections;
 
-public class TitleScreenControl : MonoBehaviour {
-
-	public Fader fader;
+public class TitleScreenControl : BaseControl {
 
 	// Use this for initialization
 	void Start () {
 
 		AudioHandler.Load ("selection");
+		
+		Messenger.AddListener ("Touch.Left", TriggerLevelSelect);
+		Messenger.AddListener ("Touch.Up", TriggerAbout);
+		Messenger.AddListener ("Touch.Right", TriggerGameStart);
+
+	}
+	
+	void Disable() {
+
+		this.enabled = false;
+
+		Messenger.RemoveListener ("Touch.Left", TriggerLevelSelect);
+		Messenger.RemoveListener ("Touch.Up", TriggerAbout);
+		Messenger.RemoveListener ("Touch.Right", TriggerGameStart);
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (GameState.MaxReachedLevel > 1 && InputExtensions.Pressed.Left) {
-			if (fader == null) {
-				LevelSelect();
-			} else {
-				fader.SetColor(new Color(0, 0, 0, 0));
-				fader.Play(true, gameObject, "LevelSelect");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Left();
-			this.enabled = false;
+		if (InputExtensions.Pressed.Left) {
+			TriggerLevelSelect();
 			return;
 		}
 		
 		if (InputExtensions.Pressed.Up) {
-			if (fader == null) {
-				OpenAbout();
-			} else {
-				fader.SetColor(new Color(0, 0, 0, 0));
-				fader.Play(true, gameObject, "OpenAbout");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Up();
-			this.enabled = false;
+			TriggerAbout();
 			return;
 		}
 		
 		if (InputExtensions.Pressed.Right ||
 		    InputExtensions.Pressed.A ||
 		    InputExtensions.Pressed.Start) {
-			if (fader == null) {
-				StartGame();
-			} else {
-				fader.SetColor(new Color(0, 0, 0, 0));
-				fader.Play(true, gameObject, "StartGame");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Right();
-			this.enabled = false;
+			TriggerGameStart();
 			return;
 		}
 
 	}
 	
-	void StartGame() {
+	void TriggerGameStart() {
+		Disable ();
+		TriggerFade (GameStart, new Color(0, 0, 0, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Right();
+	}
+	
+	void GameStart() {
 		Application.LoadLevel ("Help");
 	}
 	
-	void OpenAbout() {
+	void TriggerAbout() {
+		Disable ();
+		TriggerFade (About, new Color(0, 0, 0, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Up();
+	}
+	
+	void About() {
 		Application.LoadLevel ("About");
+	}
+	
+	void TriggerLevelSelect() {
+		if (GameState.MaxReachedLevel <= 1)
+			return;
+		Disable ();
+		TriggerFade (LevelSelect, new Color(0, 0, 0, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Left();
 	}
 	
 	void LevelSelect() {

@@ -1,18 +1,19 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class PauseControl : MonoBehaviour {
-	
-	public Fader fader;
+public class PauseControl : BaseControl {
 	
 	bool _paused;
 	//float _storedTimeScale;
+	float _touchTimer;
 
 	// Use this for initialization
 	void Start () {
 
 		_paused = false;
 		//_storedTimeScale = Time.timeScale;
+		_touchTimer = 0f;
 
 		this.enabled = false;
 		
@@ -22,17 +23,29 @@ public class PauseControl : MonoBehaviour {
 	}
 	
 	void Activate() {
+
 		this.enabled = true;
+
+		Messenger.AddListener ("Touch.Left", TriggerRestartLevel);
+		Messenger.AddListener ("Touch.Down", TriggerReturnToTitleScreen);
+
 	}
 	
 	void Deactivate() {
+
 		this.enabled = false;
+
+		Messenger.RemoveListener ("Touch.Left", TriggerRestartLevel);
+		Messenger.RemoveListener ("Touch.Down", TriggerReturnToTitleScreen);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (InputExtensions.Pressed.Start) {
+		var hasThreeTouches = Input.touchCount >= 3;
+
+		if (InputExtensions.Pressed.Start || (hasThreeTouches && _touchTimer <= 0f)) {
 
 			_paused = !_paused;
 
@@ -46,41 +59,49 @@ public class PauseControl : MonoBehaviour {
 
 		}
 
+		if (hasThreeTouches) {
+			_touchTimer = 0.15f;
+		} else if (_touchTimer > 0f) {
+			_touchTimer -= Time.deltaTime;
+		}
+		
 		if (!_paused)
 			return;
 		
 		if (InputExtensions.Pressed.Left)
 		{
-			if (fader == null) {
-				RestartLevel();
-			} else {
-				fader.SetColor(new Color(1, 1, 1, 0));
-				fader.Play(true, gameObject, "RestartLevel");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Left();
-			this.enabled = false;
+			TriggerRestartLevel();
 			return;
 		}
 		
 		if (InputExtensions.Pressed.Down)
 		{
-			if (fader == null) {
-				ReturnToTitleScreen();
-			} else {
-				fader.SetColor(new Color(0, 0, 0, 0));
-				fader.Play(true, gameObject, "ReturnToTitleScreen");
-			}
-			AudioHandler.Play("selection");
-			ArrowFeedback.Down();
-			this.enabled = false;
+			TriggerReturnToTitleScreen();
 			return;
 		}
 	
 	}
 	
+	void TriggerRestartLevel() {
+		if (!_paused || _touchTimer > 0f)
+			return;
+		Deactivate ();
+		TriggerFade(RestartLevel, new Color(1, 1, 1, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Left();
+	}
+	
 	void RestartLevel() {
 		GameState.LoadLevel();
+	}
+	
+	void TriggerReturnToTitleScreen() {
+		if (!_paused || _touchTimer > 0f)
+			return;
+		Deactivate ();
+		TriggerFade(ReturnToTitleScreen, new Color(0, 0, 0, 0));
+		AudioHandler.Play("selection");
+		ArrowFeedback.Down();
 	}
 	
 	void ReturnToTitleScreen() {

@@ -258,7 +258,7 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 38, y: -7.99999237}
+  m_AnchoredPosition: {x: 38, y: -8}
   m_SizeDelta: {x: 71, y: 20}
   m_Pivot: {x: .5, y: 1.00000012}
 --- !u!114 &540658714
@@ -637,7 +637,7 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -44, y: -7.99999237}
+  m_AnchoredPosition: {x: -44, y: -8}
   m_SizeDelta: {x: 80, y: 20}
   m_Pivot: {x: .5, y: 1.00000012}
 --- !u!1 &1416579300
@@ -724,8 +724,9 @@ GameObject:
   - 114: {fileID: 1523674967}
   - 114: {fileID: 1523674966}
   - 114: {fileID: 1523674965}
-  - 114: {fileID: 1523674975}
   - 81: {fileID: 1523674976}
+  - 114: {fileID: 1523674975}
+  - 114: {fileID: 1523674977}
   m_Layer: 0
   m_Name: UI Camera
   m_TagString: Untagged
@@ -833,7 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: 2601776c8d79142f483811ea10c221f9,
+  currentPaletteTexture: {fileID: 2800000, guid: d1a2096c99c7a4068aa43172a0372e52,
     type: 3}
 --- !u!114 &1523674970
 MonoBehaviour:
@@ -949,6 +950,17 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1523674963}
   m_Enabled: 1
+--- !u!114 &1523674977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1523674963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d31ee72ed9ef423496626c2ea2a9b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1610994002
 GameObject:
   m_ObjectHideFlags: 0

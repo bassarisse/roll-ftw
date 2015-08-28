@@ -149,9 +149,9 @@ MonoBehaviour:
   fitType: 0
   targetPixelHeight: 144
   parallaxLayerCount: 1
-  cameraZoom: 3
+  cameraZoom: 2
   pixelatedPostProcessing: 1
-  heightError: 0
+  heightError: 32
   showGizmos: 1
   subpixelOffset: {x: -1, y: 1}
   pixelZoomMode: 1
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: 96d125364c30c4c84b9ae3a699de4061,
+  currentPaletteTexture: {fileID: 2800000, guid: fd5cb4ddc887c47c394f721644dd0b87,
     type: 3}
 --- !u!114 &35665998
 MonoBehaviour:
@@ -255,7 +255,7 @@ MonoBehaviour:
   orientation: 0
   limitScreenSize: 0
   maxWidth: 480
-  maxHeight: 432
+  maxHeight: 320
   aspectRatios: []
   useResolution: 0
   useDithering: 0
@@ -333,9 +333,9 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 68.0387039
+  field of view: 53.1301041
   orthographic: 1
-  orthographic size: 6.75
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -733,11 +733,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LinkedGraphics:
-  - {fileID: 1060924521}
+  ReceiveInputs: 0
   ArrowDirection: 0
+  ExtraArrowDirection: 4
   Shake: {x: 0, y: 3}
   ShakeTime: .5
+  LinkedGraphics:
+  - {fileID: 1060924521}
 --- !u!1 &583957609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,11 +1186,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LinkedGraphics:
-  - {fileID: 1763256139}
+  ReceiveInputs: 0
   ArrowDirection: 3
+  ExtraArrowDirection: 4
   Shake: {x: 3, y: 0}
   ShakeTime: .5
+  LinkedGraphics:
+  - {fileID: 1763256139}
 --- !u!114 &705894189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,10 +1204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LinkedGraphics: []
+  ReceiveInputs: 0
   ArrowDirection: 0
+  ExtraArrowDirection: 4
   Shake: {x: 0, y: 0}
   ShakeTime: .5
+  LinkedGraphics: []
 --- !u!1 &864580131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,11 +1332,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LinkedGraphics:
-  - {fileID: 2098073486}
+  ReceiveInputs: 0
   ArrowDirection: 2
+  ExtraArrowDirection: 4
   Shake: {x: 3, y: 0}
   ShakeTime: .5
+  LinkedGraphics:
+  - {fileID: 2098073486}
 --- !u!1 &958521627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1350,6 +1358,7 @@ GameObject:
   - 114: {fileID: 958521630}
   - 114: {fileID: 958521629}
   - 114: {fileID: 958521636}
+  - 114: {fileID: 958521640}
   m_Layer: 0
   m_Name: UI Camera
   m_TagString: Untagged
@@ -1457,7 +1466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: 96d125364c30c4c84b9ae3a699de4061,
+  currentPaletteTexture: {fileID: 2800000, guid: fd5cb4ddc887c47c394f721644dd0b87,
     type: 3}
 --- !u!114 &958521634
 MonoBehaviour:
@@ -1491,7 +1500,7 @@ MonoBehaviour:
   orientation: 0
   limitScreenSize: 0
   maxWidth: 480
-  maxHeight: 432
+  maxHeight: 320
   aspectRatios: []
   useResolution: 0
   useDithering: 0
@@ -1566,6 +1575,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &958521640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 958521627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d31ee72ed9ef423496626c2ea2a9b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1060924517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,12 +1931,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ec6dfbf4e7f412eb286c835e97fea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ReceiveInputs: 0
+  ArrowDirection: 1
+  ExtraArrowDirection: 4
+  Shake: {x: 0, y: 3}
+  ShakeTime: .5
   LinkedGraphics:
   - {fileID: 670632998}
   - {fileID: 1704967933}
-  ArrowDirection: 1
-  Shake: {x: 0, y: 3}
-  ShakeTime: .5
 --- !u!1 &1371006579
 GameObject:
   m_ObjectHideFlags: 0

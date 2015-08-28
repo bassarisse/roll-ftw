@@ -34,6 +34,8 @@ public class PaletteSwap : MonoBehaviour {
 		UpdatePalette ();
 
 		Messenger.AddListener<bool> ("EnablePalleteSwap", SetEnableSwap);
+		Messenger.AddListener ("Touch.Up", ChangePaletteUp);
+		Messenger.AddListener ("Touch.Down", ChangePaletteDown);
 	
 	}
 	
@@ -43,30 +45,35 @@ public class PaletteSwap : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-		if (!this.EnableSwap)
-			return;
 		
-		if (EnableUp && InputExtensions.Pressed.Up)
-		{
-			PaletteSwap.PaletteIndex++;
-			if (PaletteSwap.PaletteIndex >= _palettes.Length)
-				PaletteSwap.PaletteIndex = 0;
-			AudioHandler.Play("palette_change");
-			ArrowFeedback.Up();
-			UpdatePalette();
-		}
+		if (InputExtensions.Pressed.Up)
+			ChangePaletteUp();
 		
-		if (EnableDown && InputExtensions.Pressed.Down)
-		{
-			PaletteSwap.PaletteIndex--;
-			if (PaletteSwap.PaletteIndex < 0)
-				PaletteSwap.PaletteIndex = _palettes.Length - 1;
-			AudioHandler.Play("palette_change");
-			ArrowFeedback.Down();
-			UpdatePalette();
-		}
+		if (InputExtensions.Pressed.Down)
+			ChangePaletteDown();
 	
+	}
+	
+	void ChangePaletteUp() {
+		if (!EnableSwap || !EnableUp)
+			return;
+		PaletteSwap.PaletteIndex++;
+		if (PaletteSwap.PaletteIndex >= _palettes.Length)
+			PaletteSwap.PaletteIndex = 0;
+		AudioHandler.Play("palette_change");
+		ArrowFeedback.Up();
+		UpdatePalette();
+	}
+	
+	void ChangePaletteDown() {
+		if (!EnableSwap || !EnableDown)
+			return;
+		PaletteSwap.PaletteIndex--;
+		if (PaletteSwap.PaletteIndex < 0)
+			PaletteSwap.PaletteIndex = _palettes.Length - 1;
+		AudioHandler.Play("palette_change");
+		ArrowFeedback.Down();
+		UpdatePalette();
 	}
 
 	private void UpdatePalette() {
