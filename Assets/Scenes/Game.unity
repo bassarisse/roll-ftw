@@ -104,12 +104,9 @@ GameObject:
   - 114: {fileID: 35665995}
   - 114: {fileID: 35665994}
   - 114: {fileID: 35665992}
-  - 114: {fileID: 35665991}
   - 114: {fileID: 35665993}
   - 114: {fileID: 35666006}
-  - 114: {fileID: 35665999}
   - 114: {fileID: 35666005}
-  - 114: {fileID: 35665997}
   - 114: {fileID: 35666007}
   - 111: {fileID: 35666008}
   m_Layer: 0
@@ -119,21 +116,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &35665991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11477484, guid: b8c02d61b43ab4bff8587f0eb216e628,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 35665990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49edd76edab94578894896faa57f179, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnableSwap: 0
-  EnableUp: 0
-  EnableDown: 1
 --- !u!114 &35665992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,21 +190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: 25dfff3e3b2702e4d97398741944ad31, type: 2}
---- !u!114 &35665997
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 11441078, guid: b8c02d61b43ab4bff8587f0eb216e628,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 35665990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83a2b670b94f15f4d86ca165f5024585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: fd5cb4ddc887c47c394f721644dd0b87,
-    type: 3}
 --- !u!114 &35665998
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -240,56 +207,6 @@ MonoBehaviour:
     type: 3}
   currentDitherTexture: {fileID: 2800000, guid: 2b9df390ea519d54ab56b3659d74d66a,
     type: 3}
---- !u!114 &35665999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11462000, guid: b8c02d61b43ab4bff8587f0eb216e628,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 35665990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7688b9d348af8d44a8115593af7333fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orientation: 0
-  limitScreenSize: 0
-  maxWidth: 480
-  maxHeight: 320
-  aspectRatios: []
-  useResolution: 0
-  useDithering: 0
-  useColorFilter: 1
-  usePixelation: 0
-  useSubPixels: 0
-  useGlow: 0
-  useScanlines: 0
-  useGizmos: 0
-  cameraOrthographicSize: 6.5
-  ditherMode: 0
-  colorMode: 3
-  colorBitDepth: 6
-  pixelScale: 1
-  subPixelScale: 1
-  scanlinesScale: 1
-  brightness: 0
-  contrast: 0
-  gammaCorrection: 1
-  pixelColorMode: 0
-  gizmosDepth: 10
-  lightColor: {r: 1, g: 1, b: 1, a: 1}
-  darkColor: {r: 0, g: 0, b: 0, a: 1}
-  glowAmount: 0
-  glowBoost: 0
-  scanlineIntensity: .5
-  grayscaleLevels: 4
-  lightOffset: 0
-  postprocessDither: {fileID: 35665998}
-  postprocessColor: {fileID: 35665997}
-  postprocessPixelate: {fileID: 35665996}
-  postprocessSubPixels: {fileID: 35665995}
-  postprocessGlow: {fileID: 35665994}
-  postprocessScanlines: {fileID: 35665993}
 --- !u!81 &35666000
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1357,6 +1274,7 @@ GameObject:
   - 114: {fileID: 958521631}
   - 114: {fileID: 958521630}
   - 114: {fileID: 958521629}
+  - 114: {fileID: 958521641}
   - 114: {fileID: 958521636}
   - 114: {fileID: 958521640}
   m_Layer: 0
@@ -1586,6 +1504,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d31ee72ed9ef423496626c2ea2a9b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &958521641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 958521627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49edd76edab94578894896faa57f179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnableSwap: 0
+  EnableUp: 0
+  EnableDown: 1
 --- !u!1 &1060924517
 GameObject:
   m_ObjectHideFlags: 0

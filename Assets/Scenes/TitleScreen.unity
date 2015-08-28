@@ -305,6 +305,7 @@ GameObject:
   - 114: {fileID: 236475996}
   - 114: {fileID: 236475995}
   - 114: {fileID: 236475994}
+  - 114: {fileID: 236476004}
   - 114: {fileID: 236475993}
   - 114: {fileID: 236475992}
   m_Layer: 0
@@ -437,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: d1a2096c99c7a4068aa43172a0372e52,
+  currentPaletteTexture: {fileID: 2800000, guid: fd5cb4ddc887c47c394f721644dd0b87,
     type: 3}
 --- !u!114 &236475999
 MonoBehaviour:
@@ -534,6 +535,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &236476004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 236475990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49edd76edab94578894896faa57f179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnableSwap: 1
+  EnableUp: 0
+  EnableDown: 1
 --- !u!1 &484837446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,11 +1479,8 @@ GameObject:
   - 114: {fileID: 1846790816}
   - 114: {fileID: 1846790815}
   - 114: {fileID: 1846790814}
-  - 114: {fileID: 1846790813}
   - 114: {fileID: 1846790812}
   - 114: {fileID: 1846790811}
-  - 114: {fileID: 1846790810}
-  - 114: {fileID: 1846790809}
   - 111: {fileID: 1846790808}
   m_Layer: 0
   m_Name: Main Camera
@@ -1493,71 +1505,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &1846790809
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 11441078, guid: b8c02d61b43ab4bff8587f0eb216e628,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1846790807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83a2b670b94f15f4d86ca165f5024585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: d1a2096c99c7a4068aa43172a0372e52,
-    type: 3}
---- !u!114 &1846790810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11462000, guid: b8c02d61b43ab4bff8587f0eb216e628,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1846790807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7688b9d348af8d44a8115593af7333fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orientation: 0
-  limitScreenSize: 0
-  maxWidth: 480
-  maxHeight: 320
-  aspectRatios: []
-  useResolution: 0
-  useDithering: 0
-  useColorFilter: 1
-  usePixelation: 0
-  useSubPixels: 0
-  useGlow: 0
-  useScanlines: 0
-  useGizmos: 0
-  cameraOrthographicSize: 6.5
-  ditherMode: 0
-  colorMode: 3
-  colorBitDepth: 6
-  pixelScale: 1
-  subPixelScale: 1
-  scanlinesScale: 1
-  brightness: 0
-  contrast: 0
-  gammaCorrection: 1
-  pixelColorMode: 0
-  gizmosDepth: 10
-  lightColor: {r: 1, g: 1, b: 1, a: 1}
-  darkColor: {r: 0, g: 0, b: 0, a: 1}
-  glowAmount: 0
-  glowBoost: 0
-  scanlineIntensity: .5
-  grayscaleLevels: 4
-  lightOffset: 0
-  postprocessDither: {fileID: 1846790818}
-  postprocessColor: {fileID: 1846790809}
-  postprocessPixelate: {fileID: 1846790817}
-  postprocessSubPixels: {fileID: 1846790816}
-  postprocessGlow: {fileID: 1846790815}
-  postprocessScanlines: {fileID: 1846790812}
 --- !u!114 &1846790811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1701,21 +1648,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: f33251c5de2c29f41a6d14995103dd1a, type: 2}
---- !u!114 &1846790813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11477484, guid: b8c02d61b43ab4bff8587f0eb216e628,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1846790807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49edd76edab94578894896faa57f179, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnableSwap: 1
-  EnableUp: 0
-  EnableDown: 1
 --- !u!114 &1846790814
 MonoBehaviour:
   m_ObjectHideFlags: 0
