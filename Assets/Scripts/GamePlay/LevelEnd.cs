@@ -27,14 +27,18 @@ public class LevelEnd : MonoBehaviour {
 		AudioHandler.Load ("win1");
 
 	}
+
+	void FixedUpdate() {
+		
+		AttractObject ();
+
+	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-		AttractObject ();
-		
+
 		if (_startTransition && _transitionTimer < transitionTime) {
-			_transitionTimer += Time.fixedDeltaTime;
+			_transitionTimer += Time.deltaTime;
 			
 			if (_transitionTimer >= transitionTime) {
 				_transitionTimer = transitionTime;
@@ -67,7 +71,6 @@ public class LevelEnd : MonoBehaviour {
 			_startTransition = true;
 
 		}
-
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {

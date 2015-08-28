@@ -8,6 +8,8 @@ public class BallControl : MonoBehaviour {
 	public float Speed = 2.0f;
 	public float JumpForce = 100.0f;
 	public LayerMask JumpLayerMask;
+
+	float frameFactor = 1f / 60f;
 	
 	Rigidbody2D _body;
 	AudioSource _audio;
@@ -91,34 +93,19 @@ public class BallControl : MonoBehaviour {
 
 		ActivateControl();
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
+	void FixedUpdate () {
+		
 		CheckGround ();
-
-		if (_isHittingGround)
-			_leapTimer = 0f;
-		else
-			_leapTimer += Time.fixedDeltaTime;
-
-		if (_jumpTimer > 0f)
-			_jumpTimer -= Time.fixedDeltaTime;
-
-		if (_jumping && _jumpTimer <= 0f) {
-			var hit = Physics2D.Raycast(transform.position, Vector2.down, 0.3f, JumpLayerMask);
-			if (hit.collider != null)
-				_jumping = false;
-		}
 		
 		var leftIsTouched = false;
 		var rightIsTouched = false;
 		
 		if (Input.touchCount > 0 && Input.touchCount < 3) {
-
+			
 			var halfWidth = Screen.width / 2;
 			var halfHeight = Screen.height / 2;
-
+			
 			for (var i = 0; i < Input.touchCount; i++) {
 				var touch = Input.GetTouch (i);
 				
@@ -132,14 +119,10 @@ public class BallControl : MonoBehaviour {
 					
 				}
 				
-				if (touch.phase == TouchPhase.Began && touch.position.y >= halfHeight) {
-					Jump ();
-				}
-				
 			}
 		}
 		
-		var finalSpeed = Speed + Mathf.Abs(_body.velocity.x) * 0.05f;
+		var finalSpeed = (Speed / frameFactor * Time.fixedDeltaTime) + Mathf.Abs(_body.velocity.x) * 0.05f;
 		
 		if (leftIsTouched || InputExtensions.Holding.Left) {
 			_body.AddForce(new Vector2(-finalSpeed, 0));
@@ -149,7 +132,43 @@ public class BallControl : MonoBehaviour {
 			_body.AddForce(new Vector2(finalSpeed, 0));
 		}
 
-		if (InputExtensions.Pressed.A || InputExtensions.Pressed.Up) {
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+		if (_isHittingGround)
+			_leapTimer = 0f;
+		else
+			_leapTimer += Time.deltaTime;
+		
+		if (_jumpTimer > 0f)
+			_jumpTimer -= Time.deltaTime;
+		
+		if (_jumping && _jumpTimer <= 0f) {
+			var hit = Physics2D.Raycast(transform.position, Vector2.down, 0.3f, JumpLayerMask);
+			if (hit.collider != null)
+				_jumping = false;
+		}
+
+		var touchedUp = false;
+		
+		if (Input.touchCount > 0 && Input.touchCount < 3) {
+
+			var halfHeight = Screen.height / 2;
+			
+			for (var i = 0; i < Input.touchCount; i++) {
+				var touch = Input.GetTouch (i);
+				
+				if (touch.phase == TouchPhase.Began && touch.position.y >= halfHeight) {
+					touchedUp = true;
+					break;
+				}
+				
+			}
+		}
+
+		if (touchedUp || InputExtensions.Pressed.A || InputExtensions.Pressed.Up) {
 			Jump();
 		}
 
@@ -200,7 +219,7 @@ public class BallControl : MonoBehaviour {
 
 		dir.Normalize ();
 		
-		_body.AddForce(dir * 0.5f);
+		_body.AddForce(dir * 0.5f / frameFactor * Time.fixedDeltaTime);
 
 		//Debug.DrawRay (transform.position, dir * radius, Color.black);
 
