@@ -39,27 +39,31 @@ public class FullScreenLockerHelper : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (FullScreenLocker.ControlEnabled) {
 		
-		if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
-			SetDesiredResolution(160, 144);
+			if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown (KeyCode.Keypad1))
+				SetDesiredResolution (160, 144);
 		
-		if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
-			SetDesiredResolution(320, 288);
+			if (Input.GetKeyDown (KeyCode.Alpha2) || Input.GetKeyDown (KeyCode.Keypad2))
+				SetDesiredResolution (320, 288);
 		
-		if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
-			SetDesiredResolution(480, 432);
+			if (Input.GetKeyDown (KeyCode.Alpha3) || Input.GetKeyDown (KeyCode.Keypad3))
+				SetDesiredResolution (480, 432);
 		
-		if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
-			SetDesiredResolution(640, 576);
+			if (Input.GetKeyDown (KeyCode.Alpha4) || Input.GetKeyDown (KeyCode.Keypad4))
+				SetDesiredResolution (640, 576);
 		
-		if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))
-			SetDesiredResolution(800, 720);
+			if (Input.GetKeyDown (KeyCode.Alpha5) || Input.GetKeyDown (KeyCode.Keypad5))
+				SetDesiredResolution (800, 720);
 		
-		if (Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Keypad6))
-			SetDesiredResolution(960, 864);
+			if (Input.GetKeyDown (KeyCode.Alpha6) || Input.GetKeyDown (KeyCode.Keypad6))
+				SetDesiredResolution (960, 864);
 		
-		if (Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Keypad7))
-			SetDesiredResolution(1120, 1008);
+			if (Input.GetKeyDown (KeyCode.Alpha7) || Input.GetKeyDown (KeyCode.Keypad7))
+				SetDesiredResolution (1120, 1008);
+
+		}
 
 		//if (_lastWidth == Screen.width && _lastHeight == Screen.height)
 		//	return;
@@ -97,6 +101,6 @@ static internal class FullScreenLocker {
 	static private FullScreenLockerHelper _fullScreenLockerHelper = ( new GameObject("FullScreenLockerHelper") ).AddComponent<FullScreenLockerHelper>();
 	#pragma warning restore 0414
 
-	static public void Test() {}
+	public static bool ControlEnabled = false;
 
 }

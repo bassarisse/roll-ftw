@@ -6,6 +6,18 @@ public static class GameState {
 	const string MAX_REACHED_LEVEL_KEY = "maxReachedLevel";
 	const string LEVEL_TIME_KEY = "levelTime";
 	
+	const int GAMEJOLT_ALL_SCORES_TABLE_ID = 90197;
+	private static int[] GAMEJOLT_SCORE_TABLE_IDS = new int[] {
+		92929,
+		92930,
+		92931,
+		92932,
+		92933,
+		92934,
+		92935,
+		92936
+	};
+	
 	public static int MaxReachedLevel {
 		get {
 			var maxReachedLevel = PlayerPrefs.GetInt(MAX_REACHED_LEVEL_KEY, 1);
@@ -32,11 +44,38 @@ public static class GameState {
 	}
 	
 	public static void FinishedLevel(float time) {
+
 		var nextLevel = CurrentLevel + 1;
 		if (nextLevel <= MaxLevel && nextLevel > MaxReachedLevel) {
 			MaxReachedLevel = nextLevel;
 		}
+
 		IsNewRecord = IsRecord (CurrentLevel, time);
+
+		//RegisterScores ();
+
+	}
+
+	private static void RegisterScores() {
+
+		var isSignedIn = GameJolt.API.Manager.Instance.CurrentUser != null;
+		if (!isSignedIn)
+			return;
+
+		var bestLevelTime = GetLevelTime (CurrentLevel);
+		
+		if (bestLevelTime >= 0f && CurrentLevel <= GAMEJOLT_SCORE_TABLE_IDS.Length)
+			RegisterScore (GAMEJOLT_SCORE_TABLE_IDS[CurrentLevel - 1], bestLevelTime);
+
+		if (MaxReachedLevel < MaxLevel)
+			return;
+
+		RegisterScore (GAMEJOLT_ALL_SCORES_TABLE_ID, GetAllLevelsTime ());
+
+	}
+	
+	private static void RegisterScore(int tableId, float time) {
+		GameJolt.API.Scores.Add (Mathf.CeilToInt(time * 100000f), GameTimer.FormatTime(time), tableId);
 	}
 	
 	public static void LoadNextLevel() {

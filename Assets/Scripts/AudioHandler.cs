@@ -7,7 +7,6 @@ public class AudioHandlerHelper : MonoBehaviour {
 	private IDictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
 	void Start() {
-		FullScreenLocker.Test ();
 		//gameObject.AddComponent<AudioSource> ();
 	}
 	
