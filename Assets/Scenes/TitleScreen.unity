@@ -472,7 +472,7 @@ MonoBehaviour:
   orientation: 0
   limitScreenSize: 0
   maxWidth: 480
-  maxHeight: 320
+  maxHeight: 432
   aspectRatios: []
   useResolution: 0
   useDithering: 0
@@ -1663,9 +1663,9 @@ MonoBehaviour:
   fitType: 0
   targetPixelHeight: 144
   parallaxLayerCount: 1
-  cameraZoom: 2
+  cameraZoom: 3
   pixelatedPostProcessing: 1
-  heightError: 32
+  heightError: 0
   showGizmos: 1
   subpixelOffset: {x: -1, y: 1}
   pixelZoomMode: 1
@@ -1769,9 +1769,9 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 53.1301041
+  field of view: 68.0387039
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

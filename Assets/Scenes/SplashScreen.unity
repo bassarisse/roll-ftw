@@ -312,9 +312,9 @@ MonoBehaviour:
   fitType: 0
   targetPixelHeight: 144
   parallaxLayerCount: 10
-  cameraZoom: 6
+  cameraZoom: 3
   pixelatedPostProcessing: 1
-  heightError: 23
+  heightError: 0
   showGizmos: 1
   subpixelOffset: {x: -1, y: 1}
   pixelZoomMode: 1
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: 2601776c8d79142f483811ea10c221f9,
+  currentPaletteTexture: {fileID: 2800000, guid: fd5cb4ddc887c47c394f721644dd0b87,
     type: 3}
 --- !u!114 &1161066400
 MonoBehaviour:

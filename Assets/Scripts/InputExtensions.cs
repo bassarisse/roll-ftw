@@ -3,33 +3,6 @@ using System.Collections;
 
 public class InputHelper : MonoBehaviour {
 
-#if UNITY_STANDALONE_OSX
-	private const string INPUT_HORIZONTAL_AXIS = "Horizontal.osx";
-	private const string INPUT_VERTICAL_AXIS = "Vertical.osx";
-	private const string INPUT_A = "A.osx";
-	private const string INPUT_B = "B.osx";
-	private const string INPUT_X = "X.osx";
-	private const string INPUT_Y = "Y.osx";
-	private const string INPUT_L = "L.osx";
-	private const string INPUT_R = "R.osx";
-	private const string INPUT_LSTICK = "LStick.osx";
-	private const string INPUT_RSTICK = "RStick.osx";
-	private const string INPUT_START = "Start.osx";
-	private const string INPUT_BACK = "Back.osx";
-#elif UNITY_STANDALONE_LINUX
-	private const string INPUT_HORIZONTAL_AXIS = "Horizontal.linux";
-	private const string INPUT_VERTICAL_AXIS = "Vertical.linux";
-	private const string INPUT_A = "A";
-	private const string INPUT_B = "B";
-	private const string INPUT_X = "X";
-	private const string INPUT_Y = "Y";
-	private const string INPUT_L = "L";
-	private const string INPUT_R = "R";
-	private const string INPUT_LSTICK = "LStick.linux";
-	private const string INPUT_RSTICK = "RStick.linux";
-	private const string INPUT_START = "Start";
-	private const string INPUT_BACK = "Back";
-#else
 	private const string INPUT_HORIZONTAL_AXIS = "Horizontal";
 	private const string INPUT_VERTICAL_AXIS = "Vertical";
 	private const string INPUT_A = "A";
@@ -42,14 +15,13 @@ public class InputHelper : MonoBehaviour {
 	private const string INPUT_RSTICK = "RStick";
 	private const string INPUT_START = "Start";
 	private const string INPUT_BACK = "Back";
-#endif
 	
 	bool _shouldUpdate = true;
 	
-	InputState _isUpPressed = InputState.Idle;
-	InputState _isDownPressed = InputState.Idle;
-	InputState _isLeftPressed = InputState.Idle;
-	InputState _isRightPressed = InputState.Idle;
+	InputAxisState _isUpPressed = InputAxisState.Idle;
+	InputAxisState _isDownPressed = InputAxisState.Idle;
+	InputAxisState _isLeftPressed = InputAxisState.Idle;
+	InputAxisState _isRightPressed = InputAxisState.Idle;
 	
 	ButtonStateRetriever _upStateRetriever = null;
 	ButtonStateRetriever _downStateRetriever = null;
@@ -69,10 +41,10 @@ public class InputHelper : MonoBehaviour {
 
 		_shouldUpdate = true;
 
-		_isUpPressed = InputState.Idle;
-		_isDownPressed = InputState.Idle;
-		_isLeftPressed = InputState.Idle;
-		_isRightPressed = InputState.Idle;
+		_isUpPressed = InputAxisState.Idle;
+		_isDownPressed = InputAxisState.Idle;
+		_isLeftPressed = InputAxisState.Idle;
+		_isRightPressed = InputAxisState.Idle;
 
 	}
 	
@@ -94,26 +66,26 @@ public class InputHelper : MonoBehaviour {
 		
 	}
 	
-	void UpdateAxisState(int axis, ref InputState positiveState, ref InputState negativeState) {
+	void UpdateAxisState(int axis, ref InputAxisState positiveState, ref InputAxisState negativeState) {
 		
 		UpdateAxisState (axis, 1, ref positiveState);
 		UpdateAxisState (axis, -1, ref negativeState);
 		
 	}
 	
-	void UpdateAxisState(int axis, int desiredValue, ref InputState state) {
+	void UpdateAxisState(int axis, int desiredValue, ref InputAxisState state) {
 		
 		if (axis == desiredValue) {
-			if (state == InputState.Idle) {
-				state = InputState.Pressed;
-			} else if (state == InputState.Pressed) {
-				state = InputState.Holding;
+			if (state == InputAxisState.Idle) {
+				state = InputAxisState.Pressed;
+			} else if (state == InputAxisState.Pressed) {
+				state = InputAxisState.Holding;
 			}
 		} else {
-			if (state == InputState.Pressed || state == InputState.Holding) {
-				state = InputState.Released;
-			} else if (state == InputState.Released) {
-				state = InputState.Idle;
+			if (state == InputAxisState.Pressed || state == InputAxisState.Holding) {
+				state = InputAxisState.Released;
+			} else if (state == InputAxisState.Released) {
+				state = InputAxisState.Idle;
 			}
 		}
 		
@@ -172,88 +144,88 @@ public class InputHelper : MonoBehaviour {
 	private bool UpArrowUp {
 		get {
 			UpdateAllAxis();
-			return _isUpPressed == InputState.Released;
+			return _isUpPressed == InputAxisState.Released;
 		}
 	}
 	
 	private bool UpArrow {
 		get {
 			UpdateAllAxis();
-			return _isUpPressed == InputState.Pressed || _isUpPressed == InputState.Holding;
+			return _isUpPressed == InputAxisState.Pressed || _isUpPressed == InputAxisState.Holding;
 		}
 	}
 	
 	private bool UpArrowDown {
 		get {
 			UpdateAllAxis();
-			return _isUpPressed == InputState.Pressed;
+			return _isUpPressed == InputAxisState.Pressed;
 		}
 	}
 	
 	private bool DownArrowUp {
 		get {
 			UpdateAllAxis();
-			return _isDownPressed == InputState.Released;
+			return _isDownPressed == InputAxisState.Released;
 		}
 	}
 	
 	private bool DownArrow {
 		get {
 			UpdateAllAxis();
-			return _isDownPressed == InputState.Pressed || _isDownPressed == InputState.Holding;
+			return _isDownPressed == InputAxisState.Pressed || _isDownPressed == InputAxisState.Holding;
 		}
 	}
 	
 	private bool DownArrowDown {
 		get {
 			UpdateAllAxis();
-			return _isDownPressed == InputState.Pressed;
+			return _isDownPressed == InputAxisState.Pressed;
 		}
 	}
 	
 	private bool LeftArrowUp {
 		get {
 			UpdateAllAxis();
-			return _isLeftPressed == InputState.Released;
+			return _isLeftPressed == InputAxisState.Released;
 		}
 	}
 	
 	private bool LeftArrow {
 		get {
 			UpdateAllAxis();
-			return _isLeftPressed == InputState.Pressed || _isLeftPressed == InputState.Holding;
+			return _isLeftPressed == InputAxisState.Pressed || _isLeftPressed == InputAxisState.Holding;
 		}
 	}
 	
 	private bool LeftArrowDown {
 		get {
 			UpdateAllAxis();
-			return _isLeftPressed == InputState.Pressed;
+			return _isLeftPressed == InputAxisState.Pressed;
 		}
 	}
 	
 	private bool RightArrowUp {
 		get {
 			UpdateAllAxis();
-			return _isRightPressed == InputState.Released;
+			return _isRightPressed == InputAxisState.Released;
 		}
 	}
 	
 	private bool RightArrow {
 		get {
 			UpdateAllAxis();
-			return _isRightPressed == InputState.Pressed || _isRightPressed == InputState.Holding;
+			return _isRightPressed == InputAxisState.Pressed || _isRightPressed == InputAxisState.Holding;
 		}
 	}
 	
 	private bool RightArrowDown {
 		get {
 			UpdateAllAxis();
-			return _isRightPressed == InputState.Pressed;
+			return _isRightPressed == InputAxisState.Pressed;
 		}
 	}
 	
-	public enum InputState {
+	public enum InputAxisState {
 		Idle,
 		Pressed,
 		Holding,
@@ -268,41 +240,41 @@ public class InputHelper : MonoBehaviour {
 
 	abstract class ButtonStateRetriever : IButtonStateRetriever {
 
-		private InputHelper _helper;
+		protected InputHelper _helper;
+		protected InputPressState _desiredInputPressState;
 		
 		public ButtonStateRetriever() {
-			throw new UnityException();
+			throw new UnityException("Parameterless constructor not supported!");
 		}
 		
-		public ButtonStateRetriever(InputHelper helper) {
+		public ButtonStateRetriever(InputHelper helper, InputPressState desiredInputPressState) {
 			_helper = helper;
+			_desiredInputPressState = desiredInputPressState;
 		}
 		
 		abstract protected bool GetButtonState (string buttonName);
 		
-		abstract protected InputPressState GetInputPressState ();
-		
 		public bool Up {
 			get {
-				return _helper.GetUpArrowState(GetInputPressState());
+				return _helper.GetUpArrowState(_desiredInputPressState);
 			}
 		}
 		
 		public bool Down {
 			get {
-				return _helper.GetDownArrowState(GetInputPressState());
+				return _helper.GetDownArrowState(_desiredInputPressState);
 			}
 		}
 		
 		public bool Left {
 			get {
-				return _helper.GetLeftArrowState(GetInputPressState());
+				return _helper.GetLeftArrowState(_desiredInputPressState);
 			}
 		}
 		
 		public bool Right {
 			get {
-				return _helper.GetRightArrowState(GetInputPressState());
+				return _helper.GetRightArrowState(_desiredInputPressState);
 			}
 		}
 		
@@ -370,42 +342,30 @@ public class InputHelper : MonoBehaviour {
 	
 	class ButtonDownRetriever : ButtonStateRetriever {
 		
-		public ButtonDownRetriever(InputHelper helper) : base(helper) {}
+		public ButtonDownRetriever(InputHelper helper) : base(helper, InputPressState.Down) {}
 		
 		override protected bool GetButtonState(string buttonName) {
 			return Input.GetButtonDown(buttonName);
-		}
-		
-		override protected InputPressState GetInputPressState() {
-			return InputPressState.Down;
 		}
 		
 	}
 	
 	class ButtonUpRetriever : ButtonStateRetriever {
 		
-		public ButtonUpRetriever(InputHelper helper) : base(helper) {}
+		public ButtonUpRetriever(InputHelper helper) : base(helper, InputPressState.Up) {}
 		
 		override protected bool GetButtonState(string buttonName) {
 			return Input.GetButtonUp(buttonName);
-		}
-		
-		override protected InputPressState GetInputPressState() {
-			return InputPressState.Up;
 		}
 		
 	}
 	
 	class ButtonHoldRetriever : ButtonStateRetriever {
 		
-		public ButtonHoldRetriever(InputHelper helper) : base(helper) {}
+		public ButtonHoldRetriever(InputHelper helper) : base(helper, InputPressState.Hold) {}
 		
 		override protected bool GetButtonState(string buttonName) {
 			return Input.GetButton(buttonName);
-		}
-		
-		override protected InputPressState GetInputPressState() {
-			return InputPressState.Hold;
 		}
 		
 	}
