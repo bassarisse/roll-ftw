@@ -133,7 +133,7 @@ public class Resolutioner : MonoBehaviour {
 			thisCamera.orthographicSize=cameraOrthographicSize*pixelScale;
 		}
 	
-		if (dirty || limitScreenSize) {
+		if (dirty && limitScreenSize) {
 			if (dirty || checkWidth!=maxWidth || checkHeight!=maxHeight || checkScreenWidth!=Screen.width || checkScreenHeight!=Screen.height) {
 				if (!Application.isPlaying) {
 					if (maxWidth>Screen.width)   {maxWidth =Screen.width;}
