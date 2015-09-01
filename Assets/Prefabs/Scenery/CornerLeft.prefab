@@ -399,9 +399,31 @@ MonoBehaviour:
       - {x: 7, y: 2}
       - {x: 3, y: -4}
   - bodyname: sc_rounded_slope
-    paths: []
+    paths:
+    - points:
+      - {x: 16, y: -8}
+      - {x: -16, y: -8}
+      - {x: -13, y: -4}
+      - {x: -1, y: 3}
+      - {x: 7, y: 6}
+      - {x: 16, y: 8}
+    - points:
+      - {x: -1, y: 3}
+      - {x: -13, y: -4}
+      - {x: -8, y: 0}
   - bodyname: sc_rounded_slope_alt
-    paths: []
+    paths:
+    - points:
+      - {x: -7, y: 6}
+      - {x: 1, y: 3}
+      - {x: 13, y: -4}
+      - {x: 16, y: -8}
+      - {x: -16, y: -8}
+      - {x: -16, y: 8}
+    - points:
+      - {x: 13, y: -4}
+      - {x: 1, y: 3}
+      - {x: 8, y: 0}
   - bodyname: sc_slope
     paths:
     - points:
