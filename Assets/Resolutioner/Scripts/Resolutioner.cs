@@ -383,7 +383,7 @@ public class ResolutionManagerEditor : Editor {
 			if (resolutionerLogo_==null) {
 				string path=AssetDatabase.GUIDToAssetPath(AssetDatabase.FindAssets("Resolutioner")[0]).Replace("Resolutioner.cs","")+"/Internal/Images/resolutioner_logo.png";
 				resolutionerLogo_ = (Texture)AssetDatabase.LoadAssetAtPath(path, typeof(Texture));
-				Debug.Log(path);
+				//Debug.Log(path);
 			}
 			return resolutionerLogo_;
 		}
@@ -394,7 +394,7 @@ public class ResolutionManagerEditor : Editor {
 			if (pixelattoIcon_==null) {
 				string path=AssetDatabase.GUIDToAssetPath(AssetDatabase.FindAssets("Resolutioner")[0]).Replace("Resolutioner.cs","")+"/Internal/Images/pixelatto_icon.png";
 				pixelattoIcon_ = (Texture)AssetDatabase.LoadAssetAtPath(path, typeof(Texture));
-				Debug.Log(path);
+				//Debug.Log(path);
 			}
 			return pixelattoIcon_;
 		}

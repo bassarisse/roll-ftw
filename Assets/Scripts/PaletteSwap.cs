@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class PaletteSwap : MonoBehaviour {
 
@@ -24,6 +27,10 @@ public class PaletteSwap : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+#if UNITY_EDITOR
+		ResetPalette();
+#endif
 		
 		AudioHandler.Load("palette_change");
 
@@ -77,7 +84,22 @@ public class PaletteSwap : MonoBehaviour {
 	}
 
 	private void UpdatePalette() {
+		if (_resolutioner == null)
+			return;
 		_resolutioner.postprocessColor.SetPalette(_palettes [PaletteSwap.PaletteIndex]);
 	}
+	
+#if UNITY_EDITOR
+
+	void OnApplicationQuit() {
+		ResetPalette ();
+	}
+
+	void ResetPalette() {
+		PaletteIndex = 0;
+		UpdatePalette ();
+	}
+
+#endif
 
 }
