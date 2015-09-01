@@ -81,7 +81,7 @@ public class PhysicsEditor : Editor {
 
 		GUI.changed = false;
 
-		EditorGUILayout.PropertyField(pixelsPerUnit, new GUIContent("Pixels Per Unit"));
+		EditorGUILayout.PropertyField(pixelsPerUnit,new GUIContent("Pixels Per Unit"));
 
 		/*If Popup  is changed*/
 		

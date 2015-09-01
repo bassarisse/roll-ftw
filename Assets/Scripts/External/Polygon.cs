@@ -45,7 +45,6 @@ public class Polygon : MonoBehaviour {
 
 	
 	void Awake() {
-
 		if(PlistPath != null && _totalPolygonsinFile.Length <= 0) {
 			this.ParsePolygonsFromFile();
 		}
@@ -91,9 +90,8 @@ public class Polygon : MonoBehaviour {
 			for(int i = 0; i<keyNames.Count; i++) {
 				_totalPolygonsinFile[i] = new PolygonObject();
 				_totalPolygonsinFile[i].bodyname = keyNames[i] as String;
-				
+
 				Hashtable bodyDic = bodies[keyNames[i]] as Hashtable;
-				/*Using single fixture because unity support single fixture*/
 				ArrayList fixtures = bodyDic["fixtures"] as ArrayList;
 				
 				var totalPaths = new List<PolygonPath>();
@@ -106,7 +104,6 @@ public class Polygon : MonoBehaviour {
 					var polygonsArray = fixture["polygons"] as ArrayList;
 					if (polygonsArray == null)
 						continue;
-					
 					
 					for(int j = 0; j < polygonsArray.Count; j++) {
 						ArrayList pointArray = polygonsArray[j] as ArrayList;
@@ -121,11 +118,10 @@ public class Polygon : MonoBehaviour {
 						
 						totalPaths.Add(tempPath);
 					}
-					
 				}
-				
+
 				_totalPolygonsinFile[i].paths = totalPaths.ToArray();
-				
+
 			}
 
 
@@ -158,7 +154,7 @@ public class Polygon : MonoBehaviour {
 
 		_polygonCollider.pathCount = _polygonObject.TotalPaths;
 
-		for(int i = 0; i < _polygonCollider.pathCount; i++) {
+		for(int i = 0; i<_polygonCollider.pathCount; i++) {
 
 			Vector2[] tempPoints = new Vector2[_polygonObject.paths[i].points.Length];
 			for(int j = 0; j<_polygonObject.paths[i].points.Length; j++) {
