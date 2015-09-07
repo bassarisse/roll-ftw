@@ -432,14 +432,13 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 236475990}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83a2b670b94f15f4d86ca165f5024585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: e12cf9fd26a02924caaf3f4316c9d87c, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: fd5cb4ddc887c47c394f721644dd0b87,
-    type: 3}
+  currentPaletteTexture: {fileID: 0}
 --- !u!114 &236475999
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -447,15 +446,15 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 236475990}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e6e06e76fc17114d9083c117a2aca6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial_: {fileID: 2100000, guid: 1ca7ede4c3fd9024d931b7b88c3eac4d, type: 2}
-  currentPaletteTexture: {fileID: 2800000, guid: 631dbc0b617220d4187803982effd5b4,
+  currentPaletteTexture: {fileID: 2800000, guid: ab50c34638ef9ac408182e3378bc9c00,
     type: 3}
-  currentDitherTexture: {fileID: 2800000, guid: 938c35af58bed134d8d76104607084ec,
+  currentDitherTexture: {fileID: 2800000, guid: 8b9c9cc61fb8e474eb7629442df545a8,
     type: 3}
 --- !u!114 &236476000
 MonoBehaviour:
@@ -475,8 +474,8 @@ MonoBehaviour:
   maxHeight: 432
   aspectRatios: []
   useResolution: 0
-  useDithering: 0
-  useColorFilter: 1
+  useDithering: 1
+  useColorFilter: 0
   usePixelation: 0
   useSubPixels: 0
   useGlow: 0
@@ -491,7 +490,7 @@ MonoBehaviour:
   scanlinesScale: 1
   brightness: 0
   contrast: 0
-  gammaCorrection: 1
+  gammaCorrection: .75
   pixelColorMode: 0
   gizmosDepth: 10
   lightColor: {r: 1, g: 1, b: 1, a: 1}

@@ -36,7 +36,7 @@ public class PaletteSwap : MonoBehaviour {
 
 		_resolutioner = GetComponent<Resolutioner> ();
 
-		_palettes = Resources.LoadAll<Texture2D>("ProcessedPalettes");
+		_palettes = Resources.LoadAll<Texture2D>("Ramps");
 
 		UpdatePalette ();
 
@@ -86,7 +86,7 @@ public class PaletteSwap : MonoBehaviour {
 	private void UpdatePalette() {
 		if (_resolutioner == null)
 			return;
-		_resolutioner.postprocessColor.SetPalette(_palettes [PaletteSwap.PaletteIndex]);
+		_resolutioner.postprocessDither.SetPalette(_palettes [PaletteSwap.PaletteIndex]);
 	}
 	
 #if UNITY_EDITOR
@@ -96,7 +96,7 @@ public class PaletteSwap : MonoBehaviour {
 	}
 
 	void ResetPalette() {
-		PaletteIndex = 0;
+		PaletteSwap.PaletteIndex = 0;
 		UpdatePalette ();
 	}
 
