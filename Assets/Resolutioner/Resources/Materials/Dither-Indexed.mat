@@ -38,13 +38,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Palette
-        second:
-          m_Texture: {fileID: 2800000, guid: ab50c34638ef9ac408182e3378bc9c00, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
@@ -94,6 +87,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _Palette
+        second:
+          m_Texture: {fileID: 2800000, guid: ab50c34638ef9ac408182e3378bc9c00, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _ColorRamp
         second:
           m_Texture: {fileID: 2800000, guid: 516f87bb45e51b64d92da5a270645652, type: 3}
@@ -119,18 +119,6 @@ Material:
         first:
           name: _Cutoff
         second: .5
-      data:
-        first:
-          name: _LightOffset
-        second: 0
-      data:
-        first:
-          name: _Red
-        second: 0
-      data:
-        first:
-          name: _Green
-        second: 0
       data:
         first:
           name: _Parallax
@@ -181,6 +169,10 @@ Material:
         second: 432
       data:
         first:
+          name: _LightOffset
+        second: 0
+      data:
+        first:
           name: _GammaCorrection
         second: .75
       data:
@@ -197,12 +189,20 @@ Material:
         second: 4
       data:
         first:
+          name: _Zoom
+        second: 1
+      data:
+        first:
           name: _Light
         second: 0
       data:
         first:
-          name: _Zoom
-        second: 1
+          name: _Red
+        second: 0
+      data:
+        first:
+          name: _Green
+        second: 0
       data:
         first:
           name: _ColorResolution
