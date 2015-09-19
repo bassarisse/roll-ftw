@@ -32,9 +32,7 @@ public class SplashLogo : MonoBehaviour {
 	
 	IEnumerator Animate() {
 		
-		var actor = Actor.GetActor(this.transform);
-		
-		yield return actor.PerformActions (
+		yield return this.RunSequence (
 			new DelayTime(0.1f),
 			new MoveBy (0.2f, new Vector3 (0, -distance, 0)),
 			new DelayTime(1.55f),
