@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+[ExecuteInEditMode]
 [RequireComponent(typeof(Text))]
 public class TextAutoShadow : MonoBehaviour {
 
