@@ -52,7 +52,7 @@ public static class GameState {
 
 		IsNewRecord = IsRecord (CurrentLevel, time);
 
-		//RegisterScores ();
+		RegisterScores ();
 
 	}
 
