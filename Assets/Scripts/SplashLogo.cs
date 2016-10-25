@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using CC;
+using UnityEngine.SceneManagement;
 
 public class SplashLogo : MonoBehaviour {
 	
@@ -50,7 +51,7 @@ public class SplashLogo : MonoBehaviour {
 
 		} else {
 
-			Application.LoadLevel ("TitleScreen");
+			SceneManager.LoadScene ("TitleScreen");
 
 		}
 

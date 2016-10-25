@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class HelpControl : BaseControl {
 	
@@ -59,7 +60,7 @@ public class HelpControl : BaseControl {
 	}
 	
 	void ReturnToTitleScreen() {
-		Application.LoadLevel ("TitleScreen");
+		SceneManager.LoadScene ("TitleScreen");
 	}
 	
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(AudioSource))]
@@ -30,7 +31,7 @@ public class BallControl : MonoBehaviour {
 	void Start () {
 
 		if (Application.isEditor)
-			Application.LoadLevelAdditive("Game");
+			SceneManager.LoadScene ("Game", LoadSceneMode.Additive);
 		
 		AudioHandler.Load ("jump");
 		AudioHandler.Load ("hit1");

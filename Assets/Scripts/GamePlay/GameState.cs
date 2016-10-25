@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public static class GameState {
 	
@@ -99,7 +100,7 @@ public static class GameState {
 
 		if (CurrentLevel > MaxLevel) {
 			Reset();
-			Application.LoadLevel ("GameOver");
+			SceneManager.LoadScene ("GameOver");
 			return;
 		}
 
@@ -108,8 +109,8 @@ public static class GameState {
 		
 		IsNewRecord = false;
 
-		Application.LoadLevel ("Level" + CurrentLevel.ToString ());
-		Application.LoadLevelAdditive("Game");
+		SceneManager.LoadScene ("Level" + CurrentLevel.ToString ());
+		SceneManager.LoadScene ("Game", LoadSceneMode.Additive);
 		
 	}
 	

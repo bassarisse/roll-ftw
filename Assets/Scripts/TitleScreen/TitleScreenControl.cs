@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TitleScreenControl : BaseControl {
 
@@ -54,7 +55,7 @@ public class TitleScreenControl : BaseControl {
 	}
 	
 	void GameStart() {
-		Application.LoadLevel ("Help");
+		SceneManager.LoadScene ("Help");
 	}
 	
 	void TriggerAbout() {
@@ -65,7 +66,7 @@ public class TitleScreenControl : BaseControl {
 	}
 	
 	void About() {
-		Application.LoadLevel ("About");
+		SceneManager.LoadScene ("About");
 	}
 	
 	void TriggerLevelSelect() {
@@ -78,7 +79,7 @@ public class TitleScreenControl : BaseControl {
 	}
 	
 	void LevelSelect() {
-		Application.LoadLevel ("LevelSelect");
+		SceneManager.LoadScene ("LevelSelect");
 	}
 
 }

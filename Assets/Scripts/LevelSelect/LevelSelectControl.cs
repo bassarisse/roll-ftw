@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectControl : BaseControl {
 	
@@ -90,7 +91,7 @@ public class LevelSelectControl : BaseControl {
 	}
 	
 	void ReturnToTitleScreen() {
-		Application.LoadLevel ("TitleScreen");
+		SceneManager.LoadScene("TitleScreen");
 	}
 	
 }

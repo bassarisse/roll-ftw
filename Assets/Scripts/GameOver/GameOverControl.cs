@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameOverControl : BaseControl {
 
@@ -54,7 +55,7 @@ public class GameOverControl : BaseControl {
 	}
 
 	void Exit() {
-		Application.LoadLevel("SplashScreen");
+		SceneManager.LoadScene("SplashScreen");
 	}
 
 }
