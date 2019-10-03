@@ -41,8 +41,11 @@ public class HelpControl : BaseControl {
 		
 	}
 	
-	void TriggerGameStart() {
-		Disable ();
+	void TriggerGameStart()
+    {
+        Debug.LogWarning("Help Start");
+
+        Disable ();
 		TriggerFade(GameStart, new Color(1, 1, 1, 0));
 		AudioHandler.Play("selection");
 		ArrowFeedback.Right();

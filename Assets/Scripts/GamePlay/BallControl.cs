@@ -28,10 +28,11 @@ public class BallControl : MonoBehaviour {
 	float _storedVolume;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 
-		if (Application.isEditor)
-			SceneManager.LoadScene ("Game", LoadSceneMode.Additive);
+		//if (Application.isEditor)
+			//SceneManager.LoadScene ("Game", LoadSceneMode.Additive);
 		
 		AudioHandler.Load ("jump");
 		AudioHandler.Load ("hit1");

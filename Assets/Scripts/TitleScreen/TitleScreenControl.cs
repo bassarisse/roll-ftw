@@ -47,7 +47,9 @@ public class TitleScreenControl : BaseControl {
 
 	}
 	
-	void TriggerGameStart() {
+	void TriggerGameStart()
+    {
+        Debug.LogWarning("Title Start");
 		Disable ();
 		TriggerFade (GameStart, new Color(0, 0, 0, 0));
 		AudioHandler.Play("selection");
