@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
 public static class GameState {
@@ -59,7 +58,7 @@ public static class GameState {
 
 	private static void RegisterScores() {
 
-		var isSignedIn = GameJolt.API.Manager.Instance.CurrentUser != null;
+		var isSignedIn = GameJolt.API.Manager.Instance?.CurrentUser != null;
 		if (!isSignedIn)
 			return;
 
@@ -96,7 +95,8 @@ public static class GameState {
 		LoadLevel ();
 	}
 	
-	public static void LoadLevel() {
+	public static void LoadLevel()
+    {
 
 		if (CurrentLevel > MaxLevel) {
 			Reset();
@@ -109,7 +109,7 @@ public static class GameState {
 		
 		IsNewRecord = false;
 
-		SceneManager.LoadScene ("Level" + CurrentLevel.ToString ());
+		SceneManager.LoadScene ("Level" + CurrentLevel,LoadSceneMode.Single);
 		SceneManager.LoadScene ("Game", LoadSceneMode.Additive);
 		
 	}
